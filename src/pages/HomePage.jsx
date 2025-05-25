@@ -52,7 +52,7 @@ const HomePage = () => {
       <StatusDonasi data={dummyData} />
 
        {/* SECTION: Card Program Donasi */}
-      <section className="py-10 px-4 border-t border-orange-500 pt-8 mb-4">
+      <section className="bg-orange-50 py-10 px-4 border-t border-orange-500 pt-8 mb-4">
   <div className="flex justify-between items-center mb-4 ">
     <h2 className="text-3xl font-bold text-orange-500">Mari Bantu Mereka</h2>
     <a href="/program" className="text-blue-600 hover:underline">Lihat Semuanya</a>
