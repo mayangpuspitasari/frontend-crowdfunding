@@ -1,7 +1,8 @@
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import KategoriDonasi from '../components/KategoriDonasi';
+import StatusDonasi from '../components/StatusDonasi';
 import DonasiCard from '../components/DonasiCard';
+import Footer from '../components/Footer';
 
 const dataDonasi = [
   {
@@ -31,6 +32,12 @@ const dataDonasi = [
   
 ];
 
+const dummyData = {
+  totalProgram: 25,
+  totalDonasi: 10000000,
+  totalDonatur: 25,
+};
+
 
 const HomePage = () => {
     const handleCategorySelect = (category) => {
@@ -42,20 +49,22 @@ const HomePage = () => {
     <div>
       <Navbar />
       <Hero />
-       <KategoriDonasi onCategorySelect={handleCategorySelect} />
+      <StatusDonasi data={dummyData} />
 
        {/* SECTION: Card Program Donasi */}
-      <section className="py-8 px-4">
-  <div className="flex justify-between items-center mb-4">
-    <h2 className="text-xl font-bold">Program Donasi</h2>
+      <section className="py-10 px-4 border-t border-orange-500 pt-8 mb-4">
+  <div className="flex justify-between items-center mb-4 ">
+    <h2 className="text-3xl font-bold text-orange-500">Mari Bantu Mereka</h2>
     <a href="/program" className="text-blue-600 hover:underline">Lihat Semuanya</a>
   </div>
-  <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 max-w-[960px] mx-auto">
-    {dataDonasi.slice(0, 4).map((item, index) => (
+  <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 ">
+    {dataDonasi.slice(0, 3).map((item, index) => (
       <DonasiCard key={index} {...item} />
     ))}
   </div>
 </section>
+
+    <Footer/>
 
     </div>
   );

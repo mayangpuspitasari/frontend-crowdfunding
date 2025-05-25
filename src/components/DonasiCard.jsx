@@ -3,7 +3,7 @@ const DonasiCard = ({ judul, terkumpul, target = 200000, hariLagi, donatur, gamb
   const progress = Math.min(terkumpul / target, 1);
 
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden w-full sm:w-[300px]">
+    <div className="bg-white shadow-md rounded-lg overflow-hidden w-full sm:w-[400px]">
       <img
         src={gambar || "/default-image.png"} // fallback gambar
         alt={judul}
