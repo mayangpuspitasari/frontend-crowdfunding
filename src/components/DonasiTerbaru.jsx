@@ -4,16 +4,18 @@ import axios from 'axios';
 
 const DonasiTerbaru = () => {
   const [donasi, setDonasi] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get('http://localhost:5000/program/terbaru')
       .then((res) => {
-        console.log('Data donasi terbaru:', res.data);
         setDonasi(res.data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.error('Gagal fetch data:', err);
+        setIsLoading(false);
       });
   }, []);
 
@@ -28,19 +30,24 @@ const DonasiTerbaru = () => {
         </a>
       </div>
 
-      <div className=" flex flex-wrap gap-12 justify-center">
-        {donasi.map((item) => (
-          <DonasiCard
-            key={item.id_program}
-            judul={item.judul_program}
-            terkumpul={item.total_terkumpul}
-            target={item.target_donasi}
-            hariLagi={item.hari_tersisa}
-            donatur={item.jumlah_donatur}
-            gambar={item.gambar}
-          />
-        ))}
-      </div>
+      {/* Loading */}
+      {isLoading ? (
+        <p className="text-center text-gray-500">Loading...</p>
+      ) : (
+        <div className="flex flex-wrap gap-12 justify-center">
+          {donasi.map((item) => (
+            <DonasiCard
+              key={item.id_program}
+              judul={item.judul_program}
+              terkumpul={item.total_terkumpul}
+              target={item.target_donasi}
+              hariLagi={item.hari_tersisa}
+              donatur={item.jumlah_donatur}
+              gambar={item.gambar}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
