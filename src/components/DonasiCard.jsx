@@ -9,7 +9,7 @@ const DonasiCard = ({
   const progress = Math.min(terkumpul / target, 1);
 
   return (
-    <div className="bg-white shadow-md rounded-2xl overflow-hidden w-full sm:w-[360px] transition hover:scale-[1.02] duration-300">
+    <div className=" bg-white shadow-md rounded-2xl overflow-hidden w-full sm:w-[360px] transition hover:scale-[1.02] duration-300">
       <img
         src={`http://localhost:5000${gambar}`}
         alt={judul}

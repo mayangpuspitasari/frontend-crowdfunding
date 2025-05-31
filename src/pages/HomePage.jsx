@@ -16,6 +16,7 @@ const HomePage = () => {
       <Navbar />
       <Hero />
       <StatusDonasi data={dummyData} />
+
       <DonasiTerbaru />
 
       <Footer />
