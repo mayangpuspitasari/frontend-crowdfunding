@@ -1,7 +1,11 @@
-const StatusDonasi = ({ data }) => {
+const InformasiDonasi = ({ data }) => {
+  const totalProgram = data?.totalProgram ?? 0;
+  const totalDonasi = data?.totalDonasi ?? 0;
+  const totalDonatur = data?.totalDonatur ?? 0;
+
   return (
     <div>
-      <section className=" bg-orange-50 py-6">
+      <section className="bg-orange-50 py-6">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-orange-500 flex flex-col md:flex-row justify-between text-center divide-y md:divide-y-0 md:divide-x border rounded-lg overflow-hidden shadow-md">
             {/* Program Donasi */}
@@ -10,7 +14,7 @@ const StatusDonasi = ({ data }) => {
                 Program Donasi
               </h3>
               <p className="text-2xl text-white font-bold mt-1">
-                {data.totalProgram}
+                {totalProgram}
               </p>
             </div>
 
@@ -20,7 +24,7 @@ const StatusDonasi = ({ data }) => {
                 Donasi Terkumpul
               </h3>
               <p className="text-2xl font-bold mt-1 text-yellow-300">
-                Rp. {data.totalDonasi.toLocaleString('id-ID')}
+                Rp {parseInt(totalDonasi).toLocaleString('id-ID')}
               </p>
             </div>
 
@@ -30,7 +34,7 @@ const StatusDonasi = ({ data }) => {
                 Donatur Terdaftar
               </h3>
               <p className="text-2xl text-white font-bold mt-1">
-                {data.totalDonatur}
+                {totalDonatur}
               </p>
             </div>
           </div>
@@ -41,5 +45,5 @@ const StatusDonasi = ({ data }) => {
   );
 };
 
-export default StatusDonasi;
+export default InformasiDonasi;
 

@@ -31,11 +31,15 @@ const Footer = () => {
         {/* Kontak */}
         <div>
           <h2 className="text-xl font-bold text-orange-400 mb-3">Kontak</h2>
-          <p className="text-sm text-gray-300">
-            Jalan Contoh No. 123, Kisaran, Sumatera Utara
-          </p>
+          <p className="text-sm text-gray-300">No HP: 081265311204</p>
           <p className="text-sm text-gray-300">
             Email: info@lazismuasahan.or.id
+          </p>
+          <p className="text-sm text-gray-300">
+            Instagram: info@lazismuasahan.or.id
+          </p>
+          <p className="text-sm text-gray-300">
+            Facebook: info@lazismuasahan.or.id
           </p>
         </div>
       </div>

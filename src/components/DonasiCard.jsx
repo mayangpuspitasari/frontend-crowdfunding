@@ -19,7 +19,10 @@ const DonasiCard = ({
         <h3 className="font-semibold text-lg text-gray-800">{judul}</h3>
         <p className="text-gray-600 text-sm">Donasi Terkumpul</p>
         <p className="font-bold text-orange-500 text-lg">
-          Rp. {(terkumpul || 0).toLocaleString('id-ID')}
+          Rp{' '}
+          {(Number(terkumpul) || 0).toLocaleString('id-ID', {
+            minimumFractionDigits: 0,
+          })}
         </p>
 
         <div className="w-full bg-gray-200 rounded-full h-3">

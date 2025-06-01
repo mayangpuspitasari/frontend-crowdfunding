@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/lazismu.png';
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
