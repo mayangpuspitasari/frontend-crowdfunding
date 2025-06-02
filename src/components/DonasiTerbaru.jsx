@@ -20,7 +20,7 @@ const DonasiTerbaru = () => {
   }, []);
 
   return (
-    <div className="px-4 md:px-8">
+    <div className="bg-orange-50 px-4 md:px-8">
       <div className="flex justify-between items-center px-4 mb-4">
         <h1 className="text-2xl font-bold text-orange-500">
           Mari Bantu Bersama

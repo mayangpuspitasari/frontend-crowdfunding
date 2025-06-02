@@ -28,7 +28,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-orange-50">
       <Hero />
       {loading ? (
         <p className="text-center py-6 text-orange-500 font-semibold">
