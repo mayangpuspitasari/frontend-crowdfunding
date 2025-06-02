@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import InformasiDonasi from '../components/InformasiDonasi';
 import DonasiTerbaru from '../components/DonasiTerbaru';
-import Footer from '../components/Footer';
+
 
 const HomePage = () => {
   const [dataRingkasan, setDataRingkasan] = useState({
@@ -29,7 +29,6 @@ const HomePage = () => {
 
   return (
     <div>
-      <Navbar />
       <Hero />
       {loading ? (
         <p className="text-center py-6 text-orange-500 font-semibold">
@@ -39,7 +38,6 @@ const HomePage = () => {
         <InformasiDonasi data={dataRingkasan} />
       )}
       <DonasiTerbaru />
-      <Footer />
     </div>
   );
 };

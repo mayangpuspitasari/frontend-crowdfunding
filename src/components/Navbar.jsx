@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import logo from '../assets/lazismu.png';
 
@@ -57,25 +58,25 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-6 pr-6">
           <ul className="flex gap-6 relative items-center">
             <li>
-              <a href="/" className="text-gray-700 hover:text-orange-500">
+              <Link to="/" className="text-gray-700 hover:text-orange-500">
                 Beranda
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/program"
+              <Link
+                to="/program"
                 className="text-gray-700 hover:text-orange-500"
               >
                 Program Donasi
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/kegiatan"
+              <Link
+                to="/kegiatan"
                 className="text-gray-700 hover:text-orange-500"
               >
                 Kegiatan
-              </a>
+              </Link>
             </li>
 
             {/* Dropdown */}
@@ -89,28 +90,28 @@ const Navbar = () => {
               {dropdownOpen && (
                 <ul className="absolute mt-2 w-48 bg-white border rounded shadow z-10">
                   <li>
-                    <a
-                      href="/profil"
+                    <Link
+                      to="/profil"
                       className="block px-4 py-2 hover:bg-orange-100"
                     >
                       Profil
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="/cara-berdonasi"
+                    <Link
+                      to="/cara-berdonasi"
                       className="block px-4 py-2 hover:bg-orange-100"
                     >
                       Cara Berdonasi
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="/struktur"
+                    <Link
+                      to="/struktur"
                       className="block px-4 py-2 hover:bg-orange-100"
                     >
                       Struktur
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               )}
@@ -119,18 +120,18 @@ const Navbar = () => {
 
           {/* Tombol Masuk & Daftar */}
           <div className="flex gap-3">
-            <a
-              href="/masuk"
+            <Link
+              to="/masuk"
               className="px-4 py-1 border border-orange-400 text-orange-400 rounded hover:bg-orange-100"
             >
               Masuk
-            </a>
-            <a
-              href="/daftar"
+            </Link>
+            <Link
+              to="/daftar"
               className="px-4 py-1 bg-orange-400 text-white rounded hover:bg-orange-500"
             >
               Daftar
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -138,21 +139,21 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden mt-4 space-y-3">
-          <a href="/" className="block text-gray-700 hover:text-orange-500">
+          <Link to="/" className="block text-gray-700 hover:text-orange-500">
             Beranda
-          </a>
-          <a
-            href="/program"
+          </Link>
+          <Link
+            to="/program"
             className="block text-gray-700 hover:text-orange-500"
           >
             Program Donasi
-          </a>
-          <a
-            href="/kegiatan"
+          </Link>
+          <Link
+            to="/kegiatan"
             className="block text-gray-700 hover:text-orange-500"
           >
             Kegiatan
-          </a>
+          </Link>
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
             className="block text-gray-700 hover:text-orange-500 focus:outline-none"
@@ -161,39 +162,39 @@ const Navbar = () => {
           </button>
           {dropdownOpen && (
             <div className="ml-4">
-              <a
-                href="/profil"
+              <Link
+                to="/profil"
                 className="block text-gray-600 hover:text-orange-500"
               >
                 Profil
-              </a>
-              <a
-                href="/cara-berdonasi"
+              </Link>
+              <Link
+                to="/cara-berdonasi"
                 className="block text-gray-600 hover:text-orange-500"
               >
                 Cara Berdonasi
-              </a>
-              <a
-                href="/struktur"
+              </Link>
+              <Link
+                to="/struktur"
                 className="block text-gray-600 hover:text-orange-500"
               >
                 Struktur
-              </a>
+              </Link>
             </div>
           )}
           <div className="flex gap-3 mt-3">
-            <a
-              href="/masuk"
+            <Link
+              to="/masuk"
               className="px-4 py-1 border border-orange-400 text-orange-400 rounded hover:bg-orange-100"
             >
               Masuk
-            </a>
-            <a
-              href="/daftar"
+            </Link>
+            <Link
+              to="/daftar"
               className="px-4 py-1 bg-orange-400 text-white rounded hover:bg-orange-500"
             >
               Daftar
-            </a>
+            </Link>
           </div>
         </div>
       )}
