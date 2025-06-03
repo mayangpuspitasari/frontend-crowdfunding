@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom';
+
 const CardProgram = ({
+  id_program,
   judul = 'Judul tidak tersedia',
   terkumpul = 0,
   target = 0,
@@ -22,7 +25,11 @@ const CardProgram = ({
       {/* Isi kanan */}
       <div className="p-4 flex flex-col justify-between flex-grow">
         <div>
-          <h3 className="font-semibold text-lg text-gray-800">{judul}</h3>
+          <Link to={`/program/${id_program}`}>
+            <h3 className="font-semibold text-lg  hover:text-orange-500 transition duration-200">
+              {judul}
+            </h3>
+          </Link>
           <p className="text-gray-600 text-sm">Donasi Terkumpul</p>
           <p className="font-bold text-orange-500 text-lg">
             Rp {Number(terkumpul).toLocaleString('id-ID')}
@@ -46,3 +53,4 @@ const CardProgram = ({
 };
 
 export default CardProgram;
+

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import KategoriDonasi from '../components/KategoriDonasi';
-import SearchBar from '../components/SearchBar';
 import SemuaDonasi from '../components/SemuaDonasi';
 
 const ProgramPage = () => {
@@ -23,7 +22,6 @@ const ProgramPage = () => {
 
   return (
     <div className="bg-orange-50 min-h-screen">
-        <SearchBar/>
       {!loading && (
         <KategoriDonasi
           categories={dataKategori}
@@ -39,14 +37,10 @@ const ProgramPage = () => {
         {/* Nanti tampilkan list program donasi sesuai kategori */}
       </div>
 
-      <div className="">
-      {!loading && (
-        <SemuaDonasi/>
-      )}
-      </div>
-
+      <div className="">{!loading && <SemuaDonasi />}</div>
     </div>
   );
 };
 
 export default ProgramPage;
+

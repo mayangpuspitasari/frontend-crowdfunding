@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import DonasiCard from './DonasiCard';
 import axios from 'axios';
@@ -25,9 +26,9 @@ const DonasiTerbaru = () => {
         <h1 className="text-2xl font-bold text-orange-500">
           Mari Bantu Bersama
         </h1>
-        <a href="/program" className="text-blue-600 hover:underline">
+        <Link to="/program" className="text-blue-600 hover:underline">
           Lihat Semua Program
-        </a>
+        </Link>
       </div>
 
       {/* Loading */}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Search } from 'lucide-react';
 
 const SearchBar = ({ onSearch }) => {
   const [keyword, setKeyword] = useState('');
@@ -9,17 +10,20 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="p-6">
-         <input
-      type="text"
-      value={keyword}
-      onChange={handleChange}
-      placeholder="Siapa Yang Ingin Kamu Bantu..."
-      className="w-full p-2 border border-orange-400 rounded-full"
-    />
+    <div className="relative max-full mx-auto mb-6">
+      <input
+        type="text"
+        value={keyword}
+        onChange={handleChange}
+        placeholder="Siapa yang ingin kamu bantu hari ini?"
+        className="w-full px-5 py-3 pl-12 text-sm border border-orange-300 rounded-full shadow focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400"
+      />
+      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-orange-400">
+        <Search size={18} />
+      </div>
     </div>
-   
   );
 };
 
 export default SearchBar;
+
