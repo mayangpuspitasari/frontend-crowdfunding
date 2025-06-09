@@ -5,6 +5,7 @@ import ProgramPage from './pages/ProgramPage';
 import Footer from './components/Footer';
 import DetailProgramPage from './pages/DetailProgramPage';
 import DonasiPage from './pages/DonasiPage';
+import KegiatanPage from './pages/KegiatanPage';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
               element={<DetailProgramPage />}
             />
             <Route path="/donasi/:id" element={<DonasiPage />} />
+            <Route path="/kegiatan" element={<KegiatanPage />} />
+
             {/* <Route path="/kegiatan" element={<KegiatanPage />} />
           {/* <Route path="/profil" element={<ProfilPage />} />
           <Route path="/cara-berdonasi" element={<CaraBerdonasiPage />} />

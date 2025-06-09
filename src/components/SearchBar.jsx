@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, placeholder = 'Cari sesuatu...' }) => {
   const [keyword, setKeyword] = useState('');
 
   const handleChange = (e) => {
@@ -15,7 +15,7 @@ const SearchBar = ({ onSearch }) => {
         type="text"
         value={keyword}
         onChange={handleChange}
-        placeholder="Siapa yang ingin kamu bantu hari ini?"
+        placeholder={placeholder}
         className="w-full px-5 py-3 pl-12 text-sm border border-orange-300 rounded-full shadow focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400"
       />
       <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-orange-400">
