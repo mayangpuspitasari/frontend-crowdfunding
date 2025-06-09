@@ -31,6 +31,7 @@ const DetailProgramPage = () => {
 
   return (
     <DetailProgram
+      id_program = {program.id_program}
       judul={program.judul}
       terkumpul={program.total_terkumpul}
       target={program.target_donasi}

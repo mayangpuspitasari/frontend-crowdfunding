@@ -1,4 +1,6 @@
+import { useNavigate } from 'react-router-dom';
 const DetailProgram = ({
+  id_program,
   judul,
   terkumpul,
   target,
@@ -8,6 +10,7 @@ const DetailProgram = ({
   deskripsi,
   gambar,
 }) => {
+  const navigate = useNavigate();
   return (
     <div className="max-w-4xl mt-10 mx-auto p-4 border-orange-200 border rounded-lg shadow-md bg-white">
       {/* Gambar */}
@@ -51,7 +54,7 @@ const DetailProgram = ({
 
       <div className="mt-6 flex justify-center">
         <button
-          onClick={() => alert('Arahkan ke halaman donasi nanti')}
+         onClick={() => navigate(`/donasi/${id_program}`)}
           className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition duration-300"
         >
           Donasi Sekarang

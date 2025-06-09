@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import ProgramPage from './pages/ProgramPage';
 import Footer from './components/Footer';
 import DetailProgramPage from './pages/DetailProgramPage';
+import DonasiPage from './pages/DonasiPage';
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
               path="/program/:id_program"
               element={<DetailProgramPage />}
             />
+            <Route path="/donasi/:id" element={<DonasiPage />} />
             {/* <Route path="/kegiatan" element={<KegiatanPage />} />
-          <Route path="/profil" element={<ProfilPage />} />
+          {/* <Route path="/profil" element={<ProfilPage />} />
           <Route path="/cara-berdonasi" element={<CaraBerdonasiPage />} />
           <Route path="/struktur" element={<StrukturPage />} />
           <Route path="/masuk" element={<MasukPage />} />
