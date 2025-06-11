@@ -1,3 +1,10 @@
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaFacebook,
+  FaInstagram,
+} from 'react-icons/fa';
+
 const Footer = () => {
   return (
     <footer className="mt-20 bg-zinc-800 text-white">
@@ -31,16 +38,40 @@ const Footer = () => {
         {/* Kontak */}
         <div>
           <h2 className="text-xl font-bold text-orange-400 mb-3">Kontak</h2>
-          <p className="text-sm text-gray-300">No HP: 081265311204</p>
-          <p className="text-sm text-gray-300">
-            Email: info@lazismuasahan.or.id
-          </p>
-          <p className="text-sm text-gray-300">
-            Instagram: info@lazismuasahan.or.id
-          </p>
-          <p className="text-sm text-gray-300">
-            Facebook: info@lazismuasahan.or.id
-          </p>
+
+          <div className="flex items-center text-sm text-gray-300 mb-2">
+            <FaPhoneAlt className="text-green-600 mr-2" />
+            <span>0812 6531 1204</span>
+          </div>
+
+          <div className="flex items-center text-sm text-gray-300 mb-2">
+            <FaEnvelope className="text-blue-600 mr-2" />
+            <span>info@lazismuasahan.or.id</span>
+          </div>
+
+          <div className="flex items-center text-sm text-gray-300 mb-2">
+            <FaInstagram className="text-pink-600 mr-2" />
+            <a
+              href="https://instagram.com/lazismu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              @lazismuasahan
+            </a>
+          </div>
+
+          <div className="flex items-center text-sm text-gray-300">
+            <FaFacebook className="text-blue-800 mr-2" />
+            <a
+              href="https://facebook.com/lazismu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              Lazismu Asahan
+            </a>
+          </div>
         </div>
       </div>
 

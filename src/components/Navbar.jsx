@@ -100,6 +100,7 @@ const Navbar = () => {
                   <li>
                     <Link
                       to="/profil"
+                      onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2 hover:bg-orange-100"
                     >
                       Profil
@@ -108,6 +109,7 @@ const Navbar = () => {
                   <li>
                     <Link
                       to="/cara-berdonasi"
+                      onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2 hover:bg-orange-100"
                     >
                       Cara Berdonasi
@@ -116,6 +118,7 @@ const Navbar = () => {
                   <li>
                     <Link
                       to="/struktur"
+                      onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2 hover:bg-orange-100"
                     >
                       Struktur

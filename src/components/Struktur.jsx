@@ -24,7 +24,7 @@ const Struktur = () => {
 
   return (
     <div className="bg-orange-50 min-h-screen px-4 md:px-12 py-10">
-      <h1 className="text-3xl font-bold text-orange-600 text-center mb-8">
+      <h1 className="text-2xl font-bold text-orange-600 text-center mb-8">
         Struktur Organisasi LAZISMU Asahan
       </h1>
 
@@ -35,7 +35,7 @@ const Struktur = () => {
       ) : struktur ? (
         <div className="flex justify-center">
           <img
-            src={`http://localhost:5000${struktur}`}
+            src={encodeURI(`http://localhost:5000${struktur}`)}
             alt="Struktur Organisasi"
             className="rounded-lg shadow-xl max-w-full md:max-w-3xl"
           />
