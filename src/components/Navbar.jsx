@@ -1,14 +1,29 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import logo from '../assets/lazismu.png';
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [logoUrl, setLogoUrl] = useState('');
   const dropdownRef = useRef(null);
-  //Fungsi untuk menutup mobile menu dan dropdown setelah klik navigasi
+
+  // Ambil logo dari API
+  useEffect(() => {
+    const fetchLogo = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/instansi/logo');
+        const data = await res.json();
+        setLogoUrl(`http://localhost:5000${data.logo}`);
+      } catch (err) {
+        console.error('Gagal memuat logo:', err);
+      }
+    };
+
+    fetchLogo();
+  }, []);
+
+  // Fungsi untuk menutup mobile menu dan dropdown setelah klik navigasi
   const handleMobileNavigate = () => {
-    console.log('Navigasi diklik!');
     setTimeout(() => {
       setMobileMenuOpen(false);
       setDropdownOpen(false);
@@ -34,7 +49,13 @@ const Navbar = () => {
       <div className="flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center space-x-3 pl-2">
-          <img src={logo} alt="Logo Lazismu" className="h-10 w-15" />
+          {logoUrl && (
+            <img
+              src={logoUrl}
+              alt="Logo Lazismu"
+              className="h-10 w-15 object-contain"
+            />
+          )}
           <h1 className="text-xl font-bold text-orange-400">LAZISMU Asahan</h1>
         </div>
 
