@@ -8,6 +8,7 @@ import DonasiPage from './pages/DonasiPage';
 import KegiatanPage from './pages/KegiatanPage';
 import ProfilPage from './pages/ProfilPage';
 import TataCaraBerdonasiPage from './pages/TataCaraBerdonasiPage';
+import StrukturPage from './pages/StrukturPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/kegiatan" element={<KegiatanPage />} />
             <Route path="/profil" element={<ProfilPage />} />
             <Route path="/cara-berdonasi" element={<TataCaraBerdonasiPage />} />
+            <Route path="/struktur" element={<StrukturPage />} />
             {/* <Route path="*" element={<h2 className="text-center">404 Not Found</h2>} /> */}
           </Routes>
         </main>

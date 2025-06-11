@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FaInfoCircle, FaEye, FaCheckCircle } from 'react-icons/fa';
 
 const Profil = () => {
   const [profil, setProfil] = useState(null);
@@ -43,7 +44,8 @@ const Profil = () => {
         <div className="grid gap-6">
           {/* Deskripsi */}
           <div className="bg-white shadow-md rounded-lg p-6 border-l-4 border-orange-400">
-            <h2 className="text-xl font-semibold text-orange-500 mb-2">
+            <h2 className="text-xl font-semibold text-orange-500 mb-2 flex items-center">
+              <FaInfoCircle className="mr-2" />
               Deskripsi
             </h2>
             <p className="text-justify text-gray-700">{profil.deskripsi}</p>
@@ -51,13 +53,19 @@ const Profil = () => {
 
           {/* Visi */}
           <div className="bg-white shadow-md rounded-lg p-6 border-l-4 border-orange-400">
-            <h2 className="text-xl font-semibold text-orange-500 mb-2">Visi</h2>
+            <h2 className="text-xl font-semibold text-orange-500 mb-2 flex items-center">
+              <FaEye className="mr-2" />
+              Visi
+            </h2>
             <p className="text-justify text-gray-700">{profil.visi}</p>
           </div>
 
           {/* Misi */}
           <div className="bg-white shadow-md rounded-lg p-6 border-l-4 border-orange-400">
-            <h2 className="text-xl font-semibold text-orange-500 mb-2">Misi</h2>
+            <h2 className="text-xl font-semibold text-orange-500 mb-2 flex items-center">
+              <FaCheckCircle className="mr-2" />
+              Misi
+            </h2>
             <ul className="list-disc list-inside text-gray-700">
               {renderMisiList(profil.misi)}
             </ul>

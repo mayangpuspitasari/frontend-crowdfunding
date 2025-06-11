@@ -7,6 +7,12 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
+  //Fungsi untuk menutup mobile menu dan dropdown setelah klik navigasi
+  const handleMobileNavigate = () => {
+    setMobileMenuOpen(false);
+    setDropdownOpen(false);
+  };
+
   // Menutup dropdown jika klik di luar elemen dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -139,58 +145,74 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden mt-4 space-y-3">
-          <Link to="/" className="block text-gray-700 hover:text-orange-500">
+          <Link
+            to="/"
+            onClick={handleMobileNavigate}
+            className="block text-gray-700 hover:text-orange-500"
+          >
             Beranda
           </Link>
           <Link
             to="/program"
+            onClick={handleMobileNavigate}
             className="block text-gray-700 hover:text-orange-500"
           >
             Program Donasi
           </Link>
           <Link
             to="/kegiatan"
+            onClick={handleMobileNavigate}
             className="block text-gray-700 hover:text-orange-500"
           >
             Kegiatan
           </Link>
+
+          {/* Dropdown button */}
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
             className="block text-gray-700 hover:text-orange-500 focus:outline-none"
           >
             Tentang Kami ▾
           </button>
+
+          {/* Dropdown content */}
           {dropdownOpen && (
             <div className="ml-4">
               <Link
                 to="/profil"
+                onClick={handleMobileNavigate}
                 className="block text-gray-600 hover:text-orange-500"
               >
                 Profil
               </Link>
               <Link
                 to="/cara-berdonasi"
+                onClick={handleMobileNavigate}
                 className="block text-gray-600 hover:text-orange-500"
               >
                 Cara Berdonasi
               </Link>
               <Link
                 to="/struktur"
+                onClick={handleMobileNavigate}
                 className="block text-gray-600 hover:text-orange-500"
               >
                 Struktur
               </Link>
             </div>
           )}
+
           <div className="flex gap-3 mt-3">
             <Link
               to="/masuk"
+              onClick={handleMobileNavigate}
               className="px-4 py-1 border border-orange-400 text-orange-400 rounded hover:bg-orange-100"
             >
               Masuk
             </Link>
             <Link
               to="/daftar"
+              onClick={handleMobileNavigate}
               className="px-4 py-1 bg-orange-400 text-white rounded hover:bg-orange-500"
             >
               Daftar
