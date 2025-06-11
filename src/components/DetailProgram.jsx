@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 const DetailProgram = ({
   id_program,
-  judul,
+  judul_program,
   terkumpul,
   target,
   persentase,
@@ -17,13 +17,13 @@ const DetailProgram = ({
       <div className="w-full h-64 bg-gray-200 mb-4 overflow-hidden rounded-md">
         <img
           src={`http://localhost:5000${gambar}`}
-          alt={judul}
+          alt={judul_program}
           className="w-full h-full object-cover"
         />
       </div>
 
       {/* Info Program */}
-      <h1 className="text-2xl font-bold">{judul}</h1>
+      <h1 className="text-2xl font-bold">{judul_program}</h1>
       <p className="text-gray-600 mt-1">Dana Terkumpul</p>
       <p className="text-orange-500 font-bold text-lg">
         Rp {Number(terkumpul).toLocaleString('id-ID')}
@@ -54,7 +54,7 @@ const DetailProgram = ({
 
       <div className="mt-6 flex justify-center">
         <button
-         onClick={() => navigate(`/donasi/${id_program}`)}
+          onClick={() => navigate(`/donasi/${id_program}`)}
           className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition duration-300"
         >
           Donasi Sekarang

@@ -8,11 +8,12 @@ import {
 
 const Footer = () => {
   const [footerData, setFooterData] = useState({
-    alamat: '',
-    kontak: '',
-    email: '',
-    fb: '',
-    ig: '',
+    alamat:
+      'Jl. Dr. Setia Budi, Kisaran Kota, Kec. Kota Kisaran Timur, Kabupaten Asahan, Sumatera Utara 21211.',
+    kontak: '081265311204',
+    email: 'lazismuasahan@gmail.com',
+    fb: 'Lazismu Asahan',
+    ig: '@lazismuasahan',
   });
   const [isLoading, setIsLoading] = useState(true);
 
