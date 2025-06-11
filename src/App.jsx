@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import DetailProgramPage from './pages/DetailProgramPage';
 import DonasiPage from './pages/DonasiPage';
 import KegiatanPage from './pages/KegiatanPage';
+import ProfilPage from './pages/ProfilPage';
+import TataCaraBerdonasiPage from './pages/TataCaraBerdonasiPage';
 
 function App() {
   return (
@@ -22,13 +24,9 @@ function App() {
             />
             <Route path="/donasi/:id" element={<DonasiPage />} />
             <Route path="/kegiatan" element={<KegiatanPage />} />
-
-            {/* <Route path="/kegiatan" element={<KegiatanPage />} />
-          {/* <Route path="/profil" element={<ProfilPage />} />
-          <Route path="/cara-berdonasi" element={<CaraBerdonasiPage />} />
-          <Route path="/struktur" element={<StrukturPage />} />
-          <Route path="/masuk" element={<MasukPage />} />
-          <Route path="/daftar" element={<DaftarPage />} /> */}
+            <Route path="/profil" element={<ProfilPage />} />
+            <Route path="/cara-berdonasi" element={<TataCaraBerdonasiPage />} />
+            {/* <Route path="*" element={<h2 className="text-center">404 Not Found</h2>} /> */}
           </Routes>
         </main>
         <Footer />

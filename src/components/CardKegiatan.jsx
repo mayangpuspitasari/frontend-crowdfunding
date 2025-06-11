@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const CardKegiatan = ({
   id_kegiatan,
@@ -8,8 +8,6 @@ const CardKegiatan = ({
   tanggal_kegiatan,
   gambar,
 }) => {
-  const navigate = useNavigate();
-
   const truncate = (text, maxLength) => {
     return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
   };
@@ -24,12 +22,11 @@ const CardKegiatan = ({
         />
       </div>
       <div className="p-4 flex flex-col justify-between">
-        <h2
-          onClick={() => navigate(`/kegiatan/${id_kegiatan}`)}
-          className="text-xl font-semibold text-orange-600 cursor-pointer hover:underline"
-        >
-          {judul}
-        </h2>
+        <Link to={`/kegiatan/${id_kegiatan}`}>
+          <h2 className="font-semibold text-lg  hover:text-orange-500 transition duration-200">
+            {judul}
+          </h2>
+        </Link>
         <p className="text-gray-600 mt-2 text-sm">{truncate(deskripsi, 150)}</p>
         <p className="text-xs text-gray-500 mt-2">
           Tanggal: {new Date(tanggal_kegiatan).toLocaleDateString('id-ID')}

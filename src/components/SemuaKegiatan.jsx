@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CardKegiatan from './CardKegiatan';
-import SearchBar from './SearchBar'; // pastikan import komponen search
+import SearchBar from './SearchBar';
 import axios from 'axios';
 
 const SemuaKegiatan = () => {
