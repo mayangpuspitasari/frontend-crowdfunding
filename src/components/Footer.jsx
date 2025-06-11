@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -6,6 +7,41 @@ import {
 } from 'react-icons/fa';
 
 const Footer = () => {
+  const [footerData, setFooterData] = useState({
+    alamat: '',
+    kontak: '',
+    email: '',
+    fb: '',
+    ig: '',
+  });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getFooterData = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/instansi/footer');
+        const data = await res.json();
+        setFooterData(data);
+      } catch (err) {
+        console.error('Gagal mengambil data footer:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getFooterData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <footer className="mt-20 bg-zinc-800 text-white text-center py-10">
+        <p className="text-gray-300 text-sm animate-pulse">
+          Memuat data footer...
+        </p>
+      </footer>
+    );
+  }
+
   return (
     <footer className="mt-20 bg-zinc-800 text-white">
       {/* Konten utama */}
@@ -29,9 +65,7 @@ const Footer = () => {
         <div>
           <h2 className="text-xl font-bold text-orange-400 mb-3">Alamat</h2>
           <p className="text-sm text-gray-300 leading-relaxed">
-            Jl. Dr. Setia Budi, Kisaran Kota, <br />
-            Kec. Kota Kisaran Timur, Kabupaten Asahan, <br />
-            Sumatera Utara 21211.
+            {footerData.alamat}
           </p>
         </div>
 
@@ -41,35 +75,35 @@ const Footer = () => {
 
           <div className="flex items-center text-sm text-gray-300 mb-2">
             <FaPhoneAlt className="text-green-600 mr-2" />
-            <span>0812 6531 1204</span>
+            <span>{footerData.kontak}</span>
           </div>
 
           <div className="flex items-center text-sm text-gray-300 mb-2">
             <FaEnvelope className="text-blue-600 mr-2" />
-            <span>info@lazismuasahan.or.id</span>
+            <span>{footerData.email}</span>
           </div>
 
           <div className="flex items-center text-sm text-gray-300 mb-2">
             <FaInstagram className="text-pink-600 mr-2" />
             <a
-              href="https://instagram.com/lazismu"
+              href={`https://instagram.com/${footerData.ig}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline"
             >
-              @lazismuasahan
+              @{footerData.ig}
             </a>
           </div>
 
           <div className="flex items-center text-sm text-gray-300">
             <FaFacebook className="text-blue-800 mr-2" />
             <a
-              href="https://facebook.com/lazismu"
+              href={`https://facebook.com/${footerData.fb}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline"
             >
-              Lazismu Asahan
+              {footerData.fb}
             </a>
           </div>
         </div>
