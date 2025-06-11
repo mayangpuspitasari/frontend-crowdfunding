@@ -6,11 +6,13 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
-
   //Fungsi untuk menutup mobile menu dan dropdown setelah klik navigasi
   const handleMobileNavigate = () => {
-    setMobileMenuOpen(false);
-    setDropdownOpen(false);
+    console.log('Navigasi diklik!');
+    setTimeout(() => {
+      setMobileMenuOpen(false);
+      setDropdownOpen(false);
+    }, 100);
   };
 
   // Menutup dropdown jika klik di luar elemen dropdown
@@ -21,7 +23,7 @@ const Navbar = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -166,42 +168,43 @@ const Navbar = () => {
           >
             Kegiatan
           </Link>
+          {/* Mobile DropdownRef */}
+          <div ref={dropdownRef}>
+            {/* Dropdown button */}
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="block text-gray-700 hover:text-orange-500 focus:outline-none"
+            >
+              Tentang Kami ▾
+            </button>
 
-          {/* Dropdown button */}
-          <button
-            onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="block text-gray-700 hover:text-orange-500 focus:outline-none"
-          >
-            Tentang Kami ▾
-          </button>
-
-          {/* Dropdown content */}
-          {dropdownOpen && (
-            <div className="ml-4">
-              <Link
-                to="/profil"
-                onClick={handleMobileNavigate}
-                className="block text-gray-600 hover:text-orange-500"
-              >
-                Profil
-              </Link>
-              <Link
-                to="/cara-berdonasi"
-                onClick={handleMobileNavigate}
-                className="block text-gray-600 hover:text-orange-500"
-              >
-                Cara Berdonasi
-              </Link>
-              <Link
-                to="/struktur"
-                onClick={handleMobileNavigate}
-                className="block text-gray-600 hover:text-orange-500"
-              >
-                Struktur
-              </Link>
-            </div>
-          )}
-
+            {/* Dropdown content */}
+            {dropdownOpen && (
+              <div className="ml-4">
+                <Link
+                  to="/profil"
+                  onClick={handleMobileNavigate}
+                  className="block text-gray-600 hover:text-orange-500"
+                >
+                  Profil
+                </Link>
+                <Link
+                  to="/cara-berdonasi"
+                  onClick={handleMobileNavigate}
+                  className="block text-gray-600 hover:text-orange-500"
+                >
+                  Cara Berdonasi
+                </Link>
+                <Link
+                  to="/struktur"
+                  onClick={handleMobileNavigate}
+                  className="block text-gray-600 hover:text-orange-500"
+                >
+                  Struktur
+                </Link>
+              </div>
+            )}
+          </div>
           <div className="flex gap-3 mt-3">
             <Link
               to="/masuk"
