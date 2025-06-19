@@ -231,7 +231,7 @@ const Navbar = () => {
           </div>
           <div className="flex gap-3 mt-3">
             <Link
-              to="/masuk"
+              to="/login"
               onClick={handleMobileNavigate}
               className="px-4 py-1 border border-orange-400 text-orange-400 rounded hover:bg-orange-100"
             >
