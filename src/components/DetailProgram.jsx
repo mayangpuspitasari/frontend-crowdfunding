@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import Komentar from './Komentar';
+
 const DetailProgram = ({
   id_program,
-  judul_program,
+  judul = 'judul tidak ada',
   terkumpul,
   target,
   persentase,
@@ -11,58 +13,79 @@ const DetailProgram = ({
   gambar,
 }) => {
   const navigate = useNavigate();
+
+  const handleDonasiClick = () => {
+    const id_user = localStorage.getItem('id_user');
+
+    if (!id_user) {
+      alert('Silakan login terlebih dahulu untuk melakukan donasi.');
+      return;
+    }
+
+    navigate(`/donasi/${id_program}`);
+  };
+
   return (
-    <div className="max-w-4xl mt-10 mx-auto p-4 border-orange-200 border rounded-lg shadow-md bg-white">
+    <div className="max-w-5xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg">
       {/* Gambar */}
-      <div className="w-full h-64 bg-gray-200 mb-4 overflow-hidden rounded-md">
+      <div className="w-full h-72 bg-gray-200 overflow-hidden rounded-lg mb-6">
         <img
           src={`http://localhost:5000${gambar}`}
-          alt={judul_program}
+          alt={judul}
           className="w-full h-full object-cover"
         />
       </div>
 
-      {/* Info Program */}
-      <h1 className="text-2xl font-bold">{judul_program}</h1>
-      <p className="text-gray-600 mt-1">Dana Terkumpul</p>
-      <p className="text-orange-500 font-bold text-lg">
-        Rp {Number(terkumpul).toLocaleString('id-ID')}
-      </p>
-      <p className="flex justify-end text-sm text-gray-600">
-        <span>{donatur} Donatur</span>
-      </p>
+      {/* Judul dan Ringkasan */}
+      <h1 className="text-3xl font-bold text-gray-800 mb-2">{judul}</h1>
 
-      <div className="w-full bg-gray-200 rounded-full h-3">
-        <div
-          className="bg-orange-500 h-3 rounded-full"
-          style={{ width: `${persentase}%` }}
-        />
+      <div className="text-sm text-gray-600 mb-4">
+        <span>{donatur} Donatur</span> • <span>{sisa_hari} Hari Lagi</span>
       </div>
 
-      <div className="flex justify-between text-sm text-gray-500 mt-2">
-        <span>
-          Terkumpul {persentase}% <br />
-          Dari Rp {Number(target).toLocaleString('id-ID')}
-        </span>
-        <span>{sisa_hari} Hari Lagi</span>
+      {/* Dana terkumpul */}
+      <div className="mb-4">
+        <p className="text-gray-700 text-sm">Dana Terkumpul</p>
+        <p className="text-orange-500 font-bold text-2xl mb-1">
+          Rp {Number(terkumpul).toLocaleString('id-ID')}
+        </p>
+
+        <div className="w-full bg-gray-300 h-3 rounded-full overflow-hidden">
+          <div
+            className="bg-orange-500 h-3 rounded-full transition-all duration-500"
+            style={{ width: `${persentase}%` }}
+          ></div>
+        </div>
+
+        <div className="flex justify-between text-sm text-gray-500 mt-1">
+          <span>Terkumpul {persentase}%</span>
+          <span>Dari Rp {Number(target).toLocaleString('id-ID')}</span>
+        </div>
       </div>
 
-      <div className="mt-4">
-        <h2 className="font-semibold">Deskripsi</h2>
-        <p className="text-gray-700">{deskripsi}</p>
+      {/* Deskripsi */}
+      <div className="mt-6">
+        <h2 className="text-lg font-semibold mb-2 text-gray-800">Deskripsi</h2>
+        <p className="text-gray-700 leading-relaxed">{deskripsi}</p>
       </div>
 
-      <div className="mt-6 flex justify-center">
+      {/* Tombol Donasi */}
+      <div className="mt-8 text-center">
         <button
-          onClick={() => navigate(`/donasi/${id_program}`)}
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition duration-300"
+          onClick={handleDonasiClick}
+          className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded-lg shadow transition duration-300"
         >
           Donasi Sekarang
         </button>
+      </div>
+
+      {/* Komentar */}
+      <div className="mt-12 border-t pt-8">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Tinggalkan Komentar</h2>
+        <Komentar id_program={id_program} />
       </div>
     </div>
   );
 };
 
 export default DetailProgram;
-

@@ -9,6 +9,8 @@ import KegiatanPage from './pages/KegiatanPage';
 import ProfilPage from './pages/ProfilPage';
 import TataCaraBerdonasiPage from './pages/TataCaraBerdonasiPage';
 import StrukturPage from './pages/StrukturPage';
+import DetailKegiatanPage from './pages/DetailKegiatanPage';
+
 
 function App() {
   return (
@@ -25,6 +27,10 @@ function App() {
             />
             <Route path="/donasi/:id" element={<DonasiPage />} />
             <Route path="/kegiatan" element={<KegiatanPage />} />
+            <Route
+              path="/kegiatan/:id_kegiatan"
+              element={<DetailKegiatanPage />}
+            />
             <Route path="/profil" element={<ProfilPage />} />
             <Route path="/cara-berdonasi" element={<TataCaraBerdonasiPage />} />
             <Route path="/struktur" element={<StrukturPage />} />

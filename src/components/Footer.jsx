@@ -13,7 +13,7 @@ const Footer = () => {
     kontak: '081265311204',
     email: 'lazismuasahan@gmail.com',
     fb: 'Lazismu Asahan',
-    ig: '@lazismuasahan',
+    ig: 'lazismuasahan',
   });
   const [isLoading, setIsLoading] = useState(true);
 
