@@ -5,13 +5,12 @@ const Login = () => {
     <div className="w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row transition-all duration-300">
       {/* Kiri: Ilustrasi dan sambutan */}
       <div className="md:w-1/2 bg-gradient-to-br from-orange-400 to-orange-600 text-white p-8 flex flex-col justify-center items-center">
-        <h2 className="text-3xl font-bold mb-4 text-center">Selamat Datang Kembali!</h2>
-        <p className="text-center text-sm">Masuk dan lanjutkan aksi pedulimu melalui platform Lazismu Asahan.</p>
-        <img
-          src="/login-illustration.svg" // Ganti dengan ilustrasi yang kamu punya
-          alt="Ilustrasi Login"
-          className="mt-6 w-4/5 hidden md:block"
-        />
+        <h2 className="text-3xl font-bold mb-4 text-center">
+          Selamat Datang Kembali!
+        </h2>
+        <p className="text-center text-sm">
+          Masuk dan lanjutkan aksi pedulimu melalui platform Lazismu Asahan.
+        </p>
       </div>
 
       {/* Kanan: Form login */}
@@ -22,7 +21,9 @@ const Login = () => {
 
         <form className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
             <input
               type="email"
               placeholder="Masukkan email"
@@ -30,7 +31,9 @@ const Login = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
             <input
               type="password"
               placeholder="Masukkan password"
@@ -48,7 +51,10 @@ const Login = () => {
 
         <p className="text-sm text-center text-gray-600 mt-6">
           Belum punya akun?{' '}
-          <Link to="/register" className="text-orange-500 font-semibold hover:underline">
+          <Link
+            to="/daftar"
+            className="text-orange-500 font-semibold hover:underline"
+          >
             Buat akun
           </Link>
         </p>
@@ -58,3 +64,4 @@ const Login = () => {
 };
 
 export default Login;
+

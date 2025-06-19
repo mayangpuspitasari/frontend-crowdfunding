@@ -11,6 +11,8 @@ import TataCaraBerdonasiPage from './pages/TataCaraBerdonasiPage';
 import StrukturPage from './pages/StrukturPage';
 import DetailKegiatanPage from './pages/DetailKegiatanPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import KelolaUserPage from './pages/KelolaUserPage';
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
             <Route path="/cara-berdonasi" element={<TataCaraBerdonasiPage />} />
             <Route path="/struktur" element={<StrukturPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/daftar" element={<RegisterPage />} />
+            <Route path="/user" element={<KelolaUserPage />} />
             {/* <Route path="*" element={<h2 className="text-center">404 Not Found</h2>} /> */}
           </Routes>
         </main>
