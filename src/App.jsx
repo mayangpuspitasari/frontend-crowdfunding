@@ -38,7 +38,7 @@ function App() {
             <Route path="/struktur" element={<StrukturPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/daftar" element={<RegisterPage />} />
-            <Route path="/user" element={<KelolaUserPage />} />
+            <Route path="admin/users" element={<KelolaUserPage />} />
             {/* <Route path="*" element={<h2 className="text-center">404 Not Found</h2>} /> */}
           </Routes>
         </main>
