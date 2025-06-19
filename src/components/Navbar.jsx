@@ -153,7 +153,7 @@ const Navbar = () => {
           {/* Tombol Masuk & Daftar */}
           <div className="flex gap-3">
             <Link
-              to="/masuk"
+              to="/login"
               className="px-4 py-1 border border-orange-400 text-orange-400 rounded hover:bg-orange-100"
             >
               Masuk

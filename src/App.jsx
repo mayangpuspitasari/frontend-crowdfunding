@@ -10,7 +10,7 @@ import ProfilPage from './pages/ProfilPage';
 import TataCaraBerdonasiPage from './pages/TataCaraBerdonasiPage';
 import StrukturPage from './pages/StrukturPage';
 import DetailKegiatanPage from './pages/DetailKegiatanPage';
-
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
@@ -34,6 +34,7 @@ function App() {
             <Route path="/profil" element={<ProfilPage />} />
             <Route path="/cara-berdonasi" element={<TataCaraBerdonasiPage />} />
             <Route path="/struktur" element={<StrukturPage />} />
+            <Route path="/login" element={<LoginPage />} />
             {/* <Route path="*" element={<h2 className="text-center">404 Not Found</h2>} /> */}
           </Routes>
         </main>

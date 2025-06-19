@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 const Hero = ({ imageSrc = '/ilus2.png', imageAlt = 'Ilustrasi Donasi' }) => {
   return (
     <section className="bg-orange-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -11,12 +12,12 @@ const Hero = ({ imageSrc = '/ilus2.png', imageAlt = 'Ilustrasi Donasi' }) => {
             Dukung program-program Lazismu Asahan untuk membantu sesama melalui
             platform donasi online.
           </p>
-          <a
-            href="/program"
+          <Link
+            to="/program"
             className="inline-block bg-orange-400 text-white text-sm sm:text-base lg:text-lg font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded hover:bg-orange-500 transition"
           >
             Donasi Sekarang
-          </a>
+          </Link>
         </div>
 
         {/* Gambar ilustrasi */}

@@ -24,7 +24,7 @@ const DetailKegiatan = ({
       <h1 className="text-3xl font-bold text-gray-800 mb-2">{judul}</h1>
 
       <div className="text-sm text-gray-600 mb-4">
-        <span>{tanggal_kegiatan}</span>
+        <span>Tanggal: {new Date(tanggal_kegiatan).toLocaleDateString('id-ID')}</span>
       </div>
 
 

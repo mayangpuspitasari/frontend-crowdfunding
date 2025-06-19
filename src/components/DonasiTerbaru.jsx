@@ -39,6 +39,7 @@ const DonasiTerbaru = () => {
           {donasi.map((item) => (
             <DonasiCard
               key={item.id_program}
+              id_program={item.id_program}
               judul={item.judul_program}
               terkumpul={item.total_terkumpul}
               target={item.target_donasi}
