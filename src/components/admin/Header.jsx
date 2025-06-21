@@ -1,14 +1,27 @@
 import { useState, useRef } from 'react';
 import { UserCircle2 } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const location = useLocation();
+
+  const getPageTitle = () => {
+    const path = location.pathname;
+    if (path.includes('/user')) return 'Kelola User';
+    if (path.includes('/program')) return 'Kelola Program Donasi';
+    if (path.includes('/kategori')) return 'Kelola Kategori';
+    if (path.includes('/kegiatan')) return 'Kelola Kegiatan';
+    if (path.includes('/donasi')) return 'Kelola Donasi';
+    if (path.includes('/laporan')) return 'Laporan Donasi';
+    return 'Dashboard Admin';
+  };
 
   return (
     <header className="flex justify-between items-center px-6 py-4 bg-white border-b shadow-sm relative">
       <h2 className="text-xl font-bold text-orange-600 tracking-wide">
-        Kelola User
+        {getPageTitle()}
       </h2>
 
       <div className="relative" ref={dropdownRef}>
@@ -24,10 +37,20 @@ const Header = () => {
             <UserCircle2 size={28} />
           </div>
         </div>
+
+        {open && (
+          <div className="absolute right-0 mt-2 w-40 bg-white border shadow rounded-md z-10">
+            <button className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+              Profil
+            </button>
+            <button className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+              Logout
+            </button>
+          </div>
+        )}
       </div>
     </header>
   );
 };
 
 export default Header;
-
