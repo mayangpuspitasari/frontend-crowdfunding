@@ -15,6 +15,8 @@ import RegisterPage from './pages/RegisterPage';
 import KelolaUserPage from './pages/KelolaUserPage';
 import KelolaProgramPage from './pages/KelolaProgramPage';
 import KelolaKategoriPage from './pages/KelolaKategoriPage';
+import KelolaDonasiPage from './pages/KelolaDonasiPage';
+import KelolaKegiatanPage from './pages/KelolaKegiatanPage';
 import DashboardPage from './pages/DashboardPage';
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
             <Route path="admin/user" element={<KelolaUserPage />} />
             <Route path="admin/program" element={<KelolaProgramPage />} />
             <Route path="admin/kategori" element={<KelolaKategoriPage />} />
+            <Route path="admin/donasi" element={<KelolaDonasiPage />} />
+            <Route path="admin/kegiatan" element={<KelolaKegiatanPage />} />
             {/* <Route path="*" element={<h2 className="text-center">404 Not Found</h2>} /> */}
           </Routes>
         </main>
