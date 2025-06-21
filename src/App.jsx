@@ -13,6 +13,9 @@ import DetailKegiatanPage from './pages/DetailKegiatanPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import KelolaUserPage from './pages/KelolaUserPage';
+import KelolaProgramPage from './pages/KelolaProgramPage';
+import KelolaKategoriPage from './pages/KelolaKategoriPage';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   return (
@@ -38,7 +41,10 @@ function App() {
             <Route path="/struktur" element={<StrukturPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/daftar" element={<RegisterPage />} />
-            <Route path="admin/users" element={<KelolaUserPage />} />
+            <Route path="admin/dashboard" element={<DashboardPage />} />
+            <Route path="admin/user" element={<KelolaUserPage />} />
+            <Route path="admin/program" element={<KelolaProgramPage />} />
+            <Route path="admin/kategori" element={<KelolaKategoriPage />} />
             {/* <Route path="*" element={<h2 className="text-center">404 Not Found</h2>} /> */}
           </Routes>
         </main>

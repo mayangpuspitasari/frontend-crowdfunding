@@ -19,9 +19,9 @@ const Sidebar = () => {
       icon: <LayoutDashboard size={18} />,
       label: 'Dashboard',
     },
-    { to: '/admin/users', icon: <Users size={18} />, label: 'Kelola User' },
+    { to: '/admin/user', icon: <Users size={18} />, label: 'Kelola User' },
     {
-      to: '/admin/program-donasi',
+      to: '/admin/program',
       icon: <Heart size={18} />,
       label: 'Kelola Program Donasi',
     },
@@ -106,11 +106,11 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Tombol Logout
+      {/* Tombol Logout */}
       <button className="mt-10 flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-md text-sm transition">
         <LogOut size={18} />
         Logout
-      </button> */}
+      </button>
     </aside>
   );
 };

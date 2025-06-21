@@ -1,20 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
-import { UserCircle2, LogOut, User2 } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { UserCircle2 } from 'lucide-react';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
-
-  // Tutup dropdown jika klik di luar
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   return (
     <header className="flex justify-between items-center px-6 py-4 bg-white border-b shadow-sm relative">
@@ -35,20 +24,6 @@ const Header = () => {
             <UserCircle2 size={28} />
           </div>
         </div>
-
-        {/* Dropdown */}
-        {open && (
-          <div className="absolute right-0 mt-3 w-44 bg-white border rounded-md shadow-lg z-50">
-            <ul className="text-sm text-gray-700">
-              <li className="px-4 py-2 hover:bg-gray-100 flex items-center gap-2 cursor-pointer">
-                <User2 size={16} /> Lihat Profil
-              </li>
-              <li className="px-4 py-2 hover:bg-gray-100 flex items-center gap-2 cursor-pointer text-red-500">
-                <LogOut size={16} /> Logout
-              </li>
-            </ul>
-          </div>
-        )}
       </div>
     </header>
   );

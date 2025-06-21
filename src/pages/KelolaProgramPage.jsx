@@ -1,32 +1,32 @@
 // File: KelolaUserPage.jsx
 import Sidebar from '../components/admin/Sidebar';
 import Header from '../components/admin/Header';
-import UserTable from '../components/admin/UserTable';
+import ProgramTable from '../components/admin/ProgramTable';
 import SearchBarAdmin from '../components/admin/SearchBarAdmin';
 import Pagination from '../components/admin/Pagination';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const KelolaUserPage = () => {
-  const [users, setUsers] = useState([]);
+const KelolaProgramPage = () => {
+  const [programs, setPrograms] = useState([]);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchPrograms = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/user?page=${page}&search=${search}`,
+          `http://localhost:5000/program?page=${page}&search=${search}`,
         );
-        setUsers(res.data.data);
+        setPrograms(res.data.data);
         setTotalPages(res.data.totalPages);
       } catch (err) {
-        console.error('Gagal mengambil data user:', err);
+        console.error('Gagal mengambil data program:', err);
       }
     };
 
-    fetchUsers();
+    fetchPrograms();
   }, [page, search]);
 
   return (
@@ -37,14 +37,23 @@ const KelolaUserPage = () => {
         <main className="p-6 flex-1">
           <div className="border rounded-lg p-6 bg-white shadow-md">
             <h3 className="font-bold text-xl mb-6 text-gray-800 border-b pb-3">
-              Data User
+              Data Program Donasi
             </h3>
-            <SearchBarAdmin
+           <div className="flex items-center justify-between mb-6">
+            <button
+                onClick=""
+                className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-sm shadow"
+              >
+                + Tambah Program Donasi
+              </button>
+
+              <SearchBarAdmin
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Cari Donatur"
+              placeholder="Cari Program Donasi"
             />
-            <UserTable data={users} />
+          </div>
+            <ProgramTable data={programs} />
             <Pagination
               page={page}
               onPageChange={setPage}
@@ -57,5 +66,5 @@ const KelolaUserPage = () => {
   );
 };
 
-export default KelolaUserPage;
+export default KelolaProgramPage;
 

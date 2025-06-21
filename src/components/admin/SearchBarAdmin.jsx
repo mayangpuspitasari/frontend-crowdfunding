@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react';
 
-const SearchBarAdmin = ({ value, onChange }) => {
+const SearchBarAdmin = ({ value, onChange, placeholder='Cari Sesuatu...' }) => {
   return (
     <div className="flex justify-end mb-4">
       <div className="relative w-full max-w-xs">
@@ -9,7 +9,7 @@ const SearchBarAdmin = ({ value, onChange }) => {
           type="text"
           value={value}
           onChange={onChange}
-          placeholder="Cari user..."
+          placeholder={placeholder}
           className="w-full pl-10 pr-4 py-2 text-sm border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none bg-white text-gray-700"
         />
       </div>
