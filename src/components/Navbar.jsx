@@ -135,7 +135,7 @@ return (
             </button>
             {profileDropdownOpen && (
               <ul className="absolute mt-2 right-0 w-48 bg-white border rounded shadow z-10">
-                <li><Link to="/profil" onClick={() => setProfileDropdownOpen(false)} className="block px-4 py-2 hover:bg-orange-100">Lihat Profil</Link></li>
+                <li><Link to="/profil-user" onClick={() => setProfileDropdownOpen(false)} className="block px-4 py-2 hover:bg-orange-100">Lihat Profil</Link></li>
                 <li>
                   <button
                     onClick={() => {
@@ -183,7 +183,7 @@ return (
         {/* Login / Profil Mobile */}
         {isLoggedIn ? (
           <div className="mt-4 space-y-2">
-            <Link to="/profil" onClick={handleMobileNavigate} className="block text-gray-700 hover:text-orange-500">Lihat Profil</Link>
+            <Link to="/profil-user" onClick={handleMobileNavigate} className="block text-gray-700 hover:text-orange-500">Lihat Profil</Link>
             <button
               onClick={() => {
                 localStorage.removeItem('token');

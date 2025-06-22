@@ -21,7 +21,7 @@ const FormProfil = () => {
   };
 
   return (
-    <div className="bg-gray-200 rounded-lg p-6 flex flex-col md:flex-row items-center gap-6">
+    <div className="bg-orange-50 rounded-lg p-6 flex flex-col md:flex-row items-center gap-6">
       <div className="flex flex-col items-center">
         <div className="w-28 h-28 rounded-full bg-gray-300 overflow-hidden">
           {foto ? (
