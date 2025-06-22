@@ -4,7 +4,7 @@ import Header from '../components/admin/Header';
 import KegiatanTable from '../components/admin/KegiatanTable';
 import SearchBarAdmin from '../components/admin/SearchBarAdmin';
 import Pagination from '../components/admin/Pagination';
-import ModalTambahKegiatan from '../components/admin/ModalTambahKegiatan';
+// import ModalTambahKegiatan from '../components/admin/ModalTambahKegiatan';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -13,7 +13,7 @@ const KelolaKegiatanPage = () => {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchKegiatan = async () => {
@@ -31,25 +31,25 @@ const KelolaKegiatanPage = () => {
     fetchKegiatan();
   }, [page, search]);
 
-const handleTambahKegiatan = () => {
-  setShowModal(true);
-};
+// const handleTambahKegiatan = () => {
+//   setShowModal(true);
+// };
 
-const handleSimpanKegiatan = async (kegiatanBaru) => {
-  try {
-    await axios.post('http://localhost:5000/kegiatan', {
-      judul_kegiatan: kegiatanBaru,
-    });
-    // Refresh data
-    const res = await axios.get(
-      `http://localhost:5000/kegiatan?page=${page}&search=${search}`,
-    );
-    setKegiatan(res.data.data);
-    setTotalPages(res.data.totalPages);
-  } catch (error) {
-    console.error('Gagal menambahkan kegiatan:', error);
-  }
-};
+// const handleSimpanKegiatan = async (kegiatanBaru) => {
+//   try {
+//     await axios.post('http://localhost:5000/kegiatan', {
+//       judul_kegiatan: kegiatanBaru,
+//     });
+//     // Refresh data
+//     const res = await axios.get(
+//       `http://localhost:5000/kegiatan?page=${page}&search=${search}`,
+//     );
+//     setKegiatan(res.data.data);
+//     setTotalPages(res.data.totalPages);
+//   } catch (error) {
+//     console.error('Gagal menambahkan kegiatan:', error);
+//   }
+// };
   return (
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
@@ -64,7 +64,7 @@ const handleSimpanKegiatan = async (kegiatanBaru) => {
             </div>
               <div className="flex items-center justify-between mb-6">
             <button
-                onClick={handleTambahKegiatan}
+                onClick=""
                 className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-sm shadow"
               >
                 + Tambah Kegiatan
