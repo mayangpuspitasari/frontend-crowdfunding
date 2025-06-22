@@ -18,6 +18,7 @@ import KelolaKategoriPage from './pages/KelolaKategoriPage';
 import KelolaDonasiPage from './pages/KelolaDonasiPage';
 import KelolaKegiatanPage from './pages/KelolaKegiatanPage';
 import DashboardPage from './pages/DashboardPage';
+import ProfilUserPage from './pages/ProfilUserPage';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
               element={<DetailKegiatanPage />}
             />
             <Route path="/profil" element={<ProfilPage />} />
+            <Route path="/profil-user" element={<ProfilUserPage />} />
             <Route path="/cara-berdonasi" element={<TataCaraBerdonasiPage />} />
             <Route path="/struktur" element={<StrukturPage />} />
             <Route path="/login" element={<LoginPage />} />
