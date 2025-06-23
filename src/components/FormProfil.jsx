@@ -34,7 +34,7 @@ const FormProfil = () => {
       </div>
 
       <div className="w-full space-y-2">
-        <p className="text-sm text-gray-600">Tanggal Bergabung: 1 Januari 2024</p>
+        <p className="text-sm text-gray-600">Tanggal Bergabung: 1 Januari 2025</p>
         <input type="text" name="nama" placeholder="Nama" value={form.nama} onChange={handleInputChange} className="w-full p-2 rounded border" />
         <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleInputChange} className="w-full p-2 rounded border" />
         <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleInputChange} className="w-full p-2 rounded border" />
