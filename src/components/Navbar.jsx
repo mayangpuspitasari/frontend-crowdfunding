@@ -203,7 +203,9 @@ const Navbar = () => {
                     <button
                       onClick={() => {
                         localStorage.removeItem('token');
-                        // localStorage.setItem('foto_user', '/uploads/profile123.jpg');
+                        localStorage.removeItem('id_user');
+                        localStorage.removeItem('role');
+                        localStorage.removeItem('nama');
                         setIsLoggedIn(false);
                         setProfileDropdownOpen(false);
                         window.location.href = '/';
@@ -307,8 +309,11 @@ const Navbar = () => {
               <button
                 onClick={() => {
                   localStorage.removeItem('token');
+                  localStorage.removeItem('id_user');
+                  localStorage.removeItem('role');
+                  localStorage.removeItem('nama');
                   setIsLoggedIn(false);
-                  handleMobileNavigate();
+                  setProfileDropdownOpen(false);
                   window.location.href = '/';
                 }}
                 className="block text-left text-gray-700 hover:text-orange-500"
@@ -341,3 +346,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
