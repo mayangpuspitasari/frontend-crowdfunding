@@ -11,7 +11,10 @@ const ProgramPage = () => {
     fetch('http://localhost:5000/kategori')
       .then((res) => res.json())
       .then((data) => {
-        setDataKategori(['Semua', ...data.map((item) => item.jenis_kategori)]);
+        setDataKategori([
+          'Semua',
+          ...data.data.map((item) => item.jenis_kategori),
+        ]);
         setLoading(false);
       })
       .catch((err) => {

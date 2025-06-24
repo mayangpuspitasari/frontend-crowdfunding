@@ -9,7 +9,9 @@ const Komentar = ({ id_program }) => {
   // Ambil komentar dari backend
   const fetchKomentar = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/komentar/${id_program}`);
+      const res = await fetch(
+        `http://localhost:5000/komentar/program/${id_program}`,
+      );
       const data = await res.json();
       setDaftarKomentar(data);
     } catch (err) {
@@ -52,41 +54,50 @@ const Komentar = ({ id_program }) => {
   return (
     <div className="max-w-3xl mx-auto mt-10">
       {/* Form komentar */}
-      <form onSubmit={handleSubmit} className="flex gap-4 mb-6">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col md:flex-row gap-4 mb-8 items-start md:items-center"
+      >
         <input
           type="text"
           placeholder="Tinggalkan Komentar"
           value={komentar}
           onChange={(e) => setKomentar(e.target.value)}
-          className="flex-1 px-4 py-2 border rounded-md focus:outline-none"
+          className="w-full md:flex-1 px-4 py-3 border border-gray-300 rounded-md focus:outline-none"
         />
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
+          className="px-6 py-3 bg-gray-300 text-black rounded-md hover:bg-gray-400 transition w-full md:w-auto"
         >
           {isSubmitting ? 'Mengirim...' : 'Kirim'}
         </button>
       </form>
 
       {/* Daftar komentar */}
-      {daftarKomentar.length === 0 && (
+      {daftarKomentar.length === 0 ? (
         <p className="text-gray-500 text-sm">Belum ada komentar.</p>
-      )}
-      {daftarKomentar.map((item) => (
-        <div
-          key={item.id_komentar}
-          className="bg-white shadow px-4 py-3 rounded-md mb-4 border"
-        >
-          <div className="text-sm text-gray-500 mb-1">
-            {item.nama_user || 'Anonim'} •{' '}
-            {new Date(item.tanggal_komentar).toLocaleDateString('id-ID')}
+      ) : (
+        daftarKomentar.map((item) => (
+          <div
+            key={item.id_komentar}
+            className="bg-white border px-6 py-4 rounded-md mb-6"
+          >
+            <p className="font-semibold mb-1">{item.nama_user || 'Anonim'}</p>
+            <p className="text-sm text-gray-500 mb-2">
+              {new Date(item.tanggal_komentar).toLocaleDateString('id-ID', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric',
+              })}
+            </p>
+            <p className="text-gray-700 whitespace-pre-line">{item.komentar}</p>
           </div>
-          <p className="text-gray-700">{item.komentar}</p>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };
 
 export default Komentar;
+
