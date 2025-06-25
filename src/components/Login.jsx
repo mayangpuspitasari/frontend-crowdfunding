@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'; // Untuk redirect
 
 const Login = () => {
   const [email, setEmail] = useState('');
+  const [role, setRole] = useState('donatur');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Login = () => {
       const res = await axios.post('http://localhost:5000/user/login', {
         email,
         password,
+        role,
       });
 
       if (res.data && res.data.token) {
@@ -27,6 +29,7 @@ const Login = () => {
         console.log('Respon Login:', res.data);
         localStorage.setItem('id_user', res.data.user.id);
         localStorage.setItem('nama', res.data.user.nama);
+        localStorage.setItem('role', res.data.role);
 
         // Redirect berdasarkan role
         if (res.data.role.toLowerCase() === 'admin') {
@@ -88,6 +91,21 @@ const Login = () => {
               placeholder="Masukkan password"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"
             />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Role
+            </label>
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"
+            >
+              <option value="donatur">Donatur</option>
+              <option value="admin">Admin</option>
+              <option value="pimpinan">Pimpinan</option>
+            </select>
           </div>
 
           <button

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import FooterAdmin from '../components/admin/FooterAdmin';
 
-const AdminLayout = () => (
+const PimpinanLayout = () => (
   <div className="flex flex-col min-h-screen bg-orange-50">
     <main className="flex-grow">
       <Outlet />
@@ -10,5 +10,5 @@ const AdminLayout = () => (
   </div>
 );
 
-export default AdminLayout;
+export default PimpinanLayout;
 

@@ -184,38 +184,47 @@ const Navbar = () => {
             <div className="relative" ref={profileDropdownRef}>
               <button
                 onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                className="text-gray-700 hover:text-orange-500 text-2xl"
+                className="flex items-center gap-2 text-gray-700 hover:text-orange-500 text-xl"
               >
-                <FaUserCircle />
+                <FaUserCircle className="text-3xl" />
               </button>
+
               {profileDropdownOpen && (
-                <ul className="absolute mt-2 right-0 w-48 bg-white border rounded shadow z-10">
-                  <li>
-                    <Link
-                      to="/profil-user"
-                      onClick={() => setProfileDropdownOpen(false)}
-                      className="block px-4 py-2 hover:bg-orange-100"
-                    >
-                      Lihat Profil
-                    </Link>
-                  </li>
-                  <li>
-                    <button
-                      onClick={() => {
-                        localStorage.removeItem('token');
-                        localStorage.removeItem('id_user');
-                        localStorage.removeItem('role');
-                        localStorage.removeItem('nama');
-                        setIsLoggedIn(false);
-                        setProfileDropdownOpen(false);
-                        window.location.href = '/';
-                      }}
-                      className="block w-full text-left px-4 py-2 hover:bg-orange-100"
-                    >
-                      Logout
-                    </button>
-                  </li>
-                </ul>
+                <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border z-50">
+                  <div className="p-4 border-b">
+                    <h4 className="text-xs text-gray-400 mt-2">Nama Donatur</h4>
+                    <p className="text-sm text-orange-800">
+                      {localStorage.getItem('nama')}
+                    </p>
+                  </div>
+                  <ul className="text-sm text-gray-700">
+                    <li>
+                      <Link
+                        to="/profil-user"
+                        onClick={() => setProfileDropdownOpen(false)}
+                        className="block px-4 py-2 hover:bg-orange-100 transition"
+                      >
+                        Lihat Profil
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          localStorage.removeItem('token');
+                          localStorage.removeItem('id_user');
+                          localStorage.removeItem('role');
+                          localStorage.removeItem('nama');
+                          setIsLoggedIn(false);
+                          setProfileDropdownOpen(false);
+                          window.location.href = '/';
+                        }}
+                        className="block w-full text-left px-4 py-2 hover:bg-orange-100 transition"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </div>
               )}
             </div>
           ) : (
