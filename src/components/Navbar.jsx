@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -11,6 +12,7 @@ const Navbar = () => {
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const profileDropdownRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -72,6 +74,16 @@ const Navbar = () => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id_user');
+    localStorage.removeItem('role');
+    localStorage.removeItem('nama');
+    setIsLoggedIn(false);
+    setProfileDropdownOpen(false);
+    navigate('/'); // Tanpa reload
+  };
 
   return (
     <nav className="bg-white shadow px-6 py-3 sticky top-0 z-50">
@@ -209,15 +221,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <button
-                        onClick={() => {
-                          localStorage.removeItem('token');
-                          localStorage.removeItem('id_user');
-                          localStorage.removeItem('role');
-                          localStorage.removeItem('nama');
-                          setIsLoggedIn(false);
-                          setProfileDropdownOpen(false);
-                          window.location.href = '/';
-                        }}
+                        onClick={handleLogout}
                         className="block w-full text-left px-4 py-2 hover:bg-orange-100 transition"
                       >
                         Logout
@@ -316,15 +320,7 @@ const Navbar = () => {
                 Lihat Profil
               </Link>
               <button
-                onClick={() => {
-                  localStorage.removeItem('token');
-                  localStorage.removeItem('id_user');
-                  localStorage.removeItem('role');
-                  localStorage.removeItem('nama');
-                  setIsLoggedIn(false);
-                  setProfileDropdownOpen(false);
-                  window.location.href = '/';
-                }}
+                onClick={handleLogout}
                 className="block text-left text-gray-700 hover:text-orange-500"
               >
                 Logout

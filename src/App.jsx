@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Layouts
 import MainLayout from './layout/MainLayout';
@@ -34,38 +35,46 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* MAIN LAYOUT UNTUK USER & DONATUR */}
+        {/* ROUTE UTAMA UNTUK USER & DONATUR */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/program" element={<ProgramPage />} />
           <Route path="/program/:id_program" element={<DetailProgramPage />} />
-          <Route path="/donasi/:id" element={<DonasiPage />} />
           <Route path="/kegiatan" element={<KegiatanPage />} />
           <Route
             path="/kegiatan/:id_kegiatan"
             element={<DetailKegiatanPage />}
           />
           <Route path="/profil" element={<ProfilPage />} />
-          <Route path="/profil-user" element={<ProfilUserPage />} />
           <Route path="/cara-berdonasi" element={<TataCaraBerdonasiPage />} />
           <Route path="/struktur" element={<StrukturPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/daftar" element={<RegisterPage />} />
+
+          {/* Khusus Donatur yang sudah login */}
+          <Route element={<ProtectedRoute allowedRoles={['donatur']} />}>
+            <Route path="/donasi/:id" element={<DonasiPage />} />
+            <Route path="/profil-user" element={<ProfilUserPage />} />
+          </Route>
         </Route>
 
-        {/* ADMIN LAYOUT */}
-        <Route element={<AdminLayout />}>
-          <Route path="admin/dashboard" element={<DashboardPage />} />
-          <Route path="admin/user" element={<KelolaUserPage />} />
-          <Route path="admin/program" element={<KelolaProgramPage />} />
-          <Route path="admin/kategori" element={<KelolaKategoriPage />} />
-          <Route path="admin/donasi" element={<KelolaDonasiPage />} />
-          <Route path="admin/kegiatan" element={<KelolaKegiatanPage />} />
+        {/* ADMIN */}
+        <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+          <Route element={<AdminLayout />}>
+            <Route path="/admin/dashboard" element={<DashboardPage />} />
+            <Route path="/admin/user" element={<KelolaUserPage />} />
+            <Route path="/admin/program" element={<KelolaProgramPage />} />
+            <Route path="/admin/kategori" element={<KelolaKategoriPage />} />
+            <Route path="/admin/donasi" element={<KelolaDonasiPage />} />
+            <Route path="/admin/kegiatan" element={<KelolaKegiatanPage />} />
+          </Route>
         </Route>
 
-        {/* LAYOUT PIMPINAN  */}
-        <Route element={<PimpinanLayout />}>
-          <Route path="pimpinan/dashboard" element={<DashboardPimpinan />} />
+        {/* PIMPINAN */}
+        <Route element={<ProtectedRoute allowedRoles={['pimpinan']} />}>
+          <Route element={<PimpinanLayout />}>
+            <Route path="/pimpinan/dashboard" element={<DashboardPimpinan />} />
+          </Route>
         </Route>
       </Routes>
     </Router>

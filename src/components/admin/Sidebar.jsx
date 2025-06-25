@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
   Users,
@@ -13,6 +14,15 @@ import {
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id_user');
+    localStorage.removeItem('role');
+    localStorage.removeItem('nama');
+    navigate('/'); // Tanpa reload
+  };
   const menuItems = [
     {
       to: '/admin/dashboard',
@@ -107,7 +117,10 @@ const Sidebar = () => {
       </div>
 
       {/* Tombol Logout */}
-      <button className="mt-10 flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-md text-sm transition">
+      <button
+        onClick={handleLogout}
+        className="mt-10 flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-md text-sm transition"
+      >
         <LogOut size={18} />
         Logout
       </button>
