@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 // Layouts
 import MainLayout from './layout/MainLayout';
@@ -33,7 +36,9 @@ import DashboardPimpinan from './pages/DashboardPimpinan';
 
 function App() {
   return (
-    <Router>
+    <div>
+       <ToastContainer position="top-right" autoClose={3000} />
+      <Router>
       <Routes>
         {/* ROUTE UTAMA UNTUK USER & DONATUR */}
         <Route element={<MainLayout />}>
@@ -78,6 +83,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
+    </div>
   );
 }
 

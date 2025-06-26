@@ -1,18 +1,40 @@
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 
-const ProgramTable = ({ data }) => {
+const ProgramTable = ({ data, onEdit, onDelete }) => {
   return (
     <div className="grid grid-cols-1 gap-6 mt-6">
       {data.map((program) => (
-        <ProgramCard key={program.id_program} program={program} />
+        <ProgramCard
+          key={program.id_program}
+          program={program}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
       ))}
     </div>
   );
 };
 
-const ProgramCard = ({ program }) => {
+const ProgramCard = ({ program, onEdit, onDelete }) => {
   const [showFull, setShowFull] = useState(false);
   const toggleDesc = () => setShowFull((prev) => !prev);
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: 'Yakin ingin menghapus?',
+      text: `Program "${program.judul_program}" akan dihapus secara permanen.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#aaa',
+      confirmButtonText: 'Ya, hapus!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onDelete(program.id_program);
+      }
+    });
+  };
 
   return (
     <div className="border rounded-xl p-5 shadow bg-white hover:shadow-md transition duration-300">
@@ -62,12 +84,18 @@ const ProgramCard = ({ program }) => {
             <Info label="Status" value={program.status} />
           </div>
 
-          {/* Aksi */}
+          {/* Tombol Aksi */}
           <div className="mt-4 flex gap-2">
-            <button className="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600 text-sm">
+            <button
+              className="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600 text-sm"
+              onClick={() => onEdit(program)}
+            >
               Edit
             </button>
-            <button className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-600 text-sm">
+            <button
+              className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-600 text-sm"
+              onClick={handleDelete}
+            >
               Hapus
             </button>
           </div>

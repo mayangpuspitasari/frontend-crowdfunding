@@ -1,4 +1,4 @@
-const KategoriTable = ({ data }) => {
+const KategoriTable = ({ data, onEdit, onDelete }) => {
   return (
     <div className="overflow-x-auto mt-4 rounded-lg shadow">
       <table className="w-full text-sm text-left border border-gray-200">
@@ -18,10 +18,15 @@ const KategoriTable = ({ data }) => {
               <td className="px-4 py-2 text-center">{i + 1}</td>
               <td className="px-4 py-2 text-center">{kategori.jenis_kategori}</td>
               <td className="px-4 py-2 space-x-2 text-center">
-                <button className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition">
+                <button
+                  onClick={() => onEdit(kategori)}
+                  className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition"
+                >
                   Edit
                 </button>
-                <button className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition">
+                <button 
+                onClick={() => onDelete(kategori.id_kategori)}
+                className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition">
                   Hapus
                 </button>
               </td>
@@ -34,4 +39,3 @@ const KategoriTable = ({ data }) => {
 };
 
 export default KategoriTable;
-

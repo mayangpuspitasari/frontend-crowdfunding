@@ -46,7 +46,7 @@ const Footer = () => {
   return (
     <footer className="mt-20 bg-zinc-800 text-white">
       {/* Konten utama */}
-      <div className="max-w-screen-xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="max-w-screen-xl  mx-auto px-20 py-5 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Tentang Kami */}
         <div>
           <h2 className="text-xl font-bold text-orange-400 mb-3">
@@ -63,7 +63,7 @@ const Footer = () => {
         </div>
 
         {/* Alamat */}
-        <div>
+        <div className="px-20 ">
           <h2 className="text-xl font-bold text-orange-400 mb-3">Alamat</h2>
           <p className="text-sm text-gray-300 leading-relaxed">
             {footerData.alamat}
@@ -71,7 +71,7 @@ const Footer = () => {
         </div>
 
         {/* Kontak */}
-        <div>
+        <div className="px-20">
           <h2 className="text-xl font-bold text-orange-400 mb-3">Kontak</h2>
 
           <div className="flex items-center text-sm text-gray-300 mb-2">

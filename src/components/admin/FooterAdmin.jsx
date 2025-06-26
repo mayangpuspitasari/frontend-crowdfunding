@@ -1,4 +1,4 @@
-import { FaHeart, FaRegCopyright } from 'react-icons/fa';
+import { FaRegCopyright } from 'react-icons/fa';
 
 const FooterAdmin = () => {
   return (
