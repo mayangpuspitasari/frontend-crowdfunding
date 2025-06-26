@@ -1,4 +1,4 @@
-const UserTable = ({ data }) => {
+const UserTable = ({ data, onEdit, onDelete }) => {
   return (
     <div className="overflow-x-auto mt-4 rounded-lg shadow">
       <table className="w-full text-sm text-left border border-gray-200">
@@ -24,10 +24,16 @@ const UserTable = ({ data }) => {
               <td className="px-4 py-2 text-center">{user.no_hp}</td>
               <td className="px-4 py-2 text-center">{user.tanggal_daftar}</td>
               <td className="px-4 py-2 space-x-2 text-center">
-                <button className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition">
+                <button
+                  className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition"
+                  onClick={() => onEdit(user)}
+                >
                   Edit
                 </button>
-                <button className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition">
+                <button
+                  className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
+                  onClick={() => onDelete(user.id_user)}
+                >
                   Hapus
                 </button>
               </td>
@@ -40,4 +46,5 @@ const UserTable = ({ data }) => {
 };
 
 export default UserTable;
+
 
