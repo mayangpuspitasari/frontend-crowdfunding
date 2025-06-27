@@ -31,7 +31,8 @@ const DetailKegiatanPage = () => {
 
   return (
     <DetailKegiatan
-      id_kegiatan = {kegiatan.id_kegiatan}
+      id_kegiatan={kegiatan.id_kegiatan}
+      judul_program={kegiatan.judul_program}
       judul={kegiatan.judul_kegiatan}
       tanggal_kegiatan={kegiatan.tanggal_kegiatan}
       deskripsi={kegiatan.deskripsi}

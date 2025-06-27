@@ -13,24 +13,30 @@ const CardKegiatan = ({
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row">
-      <div className="w-32 md:w-48 h-32 md:h-40 bg-gray-200 overflow-hidden flex-shrink-0">
+    <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row hover:shadow-lg transition-shadow duration-300">
+      <div className="w-full md:w-48 h-40 bg-gray-200 overflow-hidden flex-shrink-0">
         <img
           src={`http://localhost:5000${gambar}`}
           alt={judul}
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="p-4 flex flex-col justify-between">
-        <Link to={`/kegiatan/${id_kegiatan}`}>
-          <h2 className="font-semibold text-lg  hover:text-orange-500 transition duration-200">
-            {judul}
-          </h2>
-        </Link>
-        <p className="text-gray-600 mt-2 text-sm">{truncate(deskripsi, 150)}</p>
+      <div className="p-4 flex flex-col justify-between flex-grow">
+        <h2 className="font-semibold text-lg text-gray-800">
+          {truncate(judul, 80)}
+        </h2>
+        <p className="text-gray-600 mt-2 text-sm">{truncate(deskripsi, 300)}</p>
         <p className="text-xs text-gray-500 mt-2">
           Tanggal: {new Date(tanggal_kegiatan).toLocaleDateString('id-ID')}
         </p>
+        <div className="mt-3">
+          <Link
+            to={`/kegiatan/${id_kegiatan}`}
+            className="inline-block text-orange-500 text-sm font-semibold hover:underline transition duration-200"
+          >
+            Baca Selengkapnya →
+          </Link>
+        </div>
       </div>
     </div>
   );

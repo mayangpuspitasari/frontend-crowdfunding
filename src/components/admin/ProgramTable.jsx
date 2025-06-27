@@ -40,20 +40,23 @@ const ProgramCard = ({ program, onEdit, onDelete }) => {
     <div className="border rounded-xl p-5 shadow bg-white hover:shadow-md transition duration-300">
       <div className="flex flex-col md:flex-row gap-5">
         {/* Gambar */}
-        <img
-          src={`http://localhost:5000${program.gambar}`}
-          alt={program.judul_program}
-          className="w-full md:w-40 h-28 object-cover rounded-md"
-        />
+        <div className="w-full md:w-40 h-28 overflow-hidden rounded-md bg-gray-100 flex-shrink-0">
+          <img
+            src={`http://localhost:5000${program.gambar}`}
+            alt={program.judul_program}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         {/* Konten */}
         <div className="flex-1">
-          <h3 className="text-lg font-bold text-orange-600 mb-1">
+          {/* Judul */}
+          <h3 className="text-lg font-bold text-orange-600 mb-2">
             {program.judul_program}
           </h3>
 
           {/* Deskripsi */}
-          <p className="text-sm text-gray-700 mb-2">
+          <p className="text-sm text-gray-700 mb-3 leading-relaxed">
             {showFull
               ? program.deskripsi
               : program.deskripsi.slice(0, 150) + '...'}
@@ -67,34 +70,44 @@ const ProgramCard = ({ program, onEdit, onDelete }) => {
             )}
           </p>
 
-          {/* Detail */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 text-sm text-gray-600">
+          {/* Info Detail */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 text-sm text-gray-700">
             <Info label="Kategori" value={program.jenis_kategori} />
-            <Info label="Tanggal Mulai" value={program.tgl_mulai} />
-            <Info label="Tanggal Berakhir" value={program.tgl_berakhir} />
+            <Info
+              label="Tanggal Mulai"
+              value={new Date(program.tgl_mulai).toLocaleDateString('id-ID')}
+            />
+            <Info
+              label="Tanggal Berakhir"
+              value={new Date(program.tgl_berakhir).toLocaleDateString('id-ID')}
+            />
             <Info label="Jumlah Donatur" value={program.jumlah_donatur} />
             <Info
               label="Target Donasi"
-              value={`Rp ${Number(program.target_donasi).toLocaleString('id-ID')}`}
+              value={`Rp ${Number(program.target_donasi).toLocaleString(
+                'id-ID',
+              )}`}
             />
             <Info
               label="Total Terkumpul"
-              value={`Rp ${Number(program.total_terkumpul).toLocaleString('id-ID')}`}
+              value={`Rp ${Number(program.total_terkumpul).toLocaleString(
+                'id-ID',
+              )}`}
             />
             <Info label="Status" value={program.status} />
           </div>
 
           {/* Tombol Aksi */}
-          <div className="mt-4 flex gap-2">
+          <div className="mt-4 flex flex-wrap gap-2">
             <button
-              className="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600 text-sm"
               onClick={() => onEdit(program)}
+              className="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600 text-sm"
             >
               Edit
             </button>
             <button
-              className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-600 text-sm"
               onClick={handleDelete}
+              className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-600 text-sm"
             >
               Hapus
             </button>
@@ -112,3 +125,4 @@ const Info = ({ label, value }) => (
 );
 
 export default ProgramTable;
+

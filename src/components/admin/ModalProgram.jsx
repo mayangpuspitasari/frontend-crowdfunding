@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const ModalProgram = ({ isOpen, onClose, onSave, initialData = {}, mode = 'tambah' }) => {
+const ModalProgram = ({
+  isOpen,
+  onClose,
+  onSave,
+  initialData = {},
+  mode = 'tambah',
+}) => {
   const [form, setForm] = useState({
     judul_program: '',
     deskripsi: '',
@@ -16,7 +22,7 @@ const ModalProgram = ({ isOpen, onClose, onSave, initialData = {}, mode = 'tamba
   const [preview, setPreview] = useState(null);
   const [kategoriList, setKategoriList] = useState([]); // Default array
 
-  // ✅ Ambil data kategori
+  //Ambil data kategori
   useEffect(() => {
     const fetchKategori = async () => {
       try {
@@ -36,9 +42,9 @@ const ModalProgram = ({ isOpen, onClose, onSave, initialData = {}, mode = 'tamba
     fetchKategori();
   }, []);
 
-  // ✅ Isi ulang form saat edit
+  // Isi ulang form saat edit
   useEffect(() => {
-    if (initialData) {
+    if (mode === 'edit' && initialData) {
       setForm({
         judul_program: initialData.judul_program || '',
         deskripsi: initialData.deskripsi || '',
@@ -48,12 +54,26 @@ const ModalProgram = ({ isOpen, onClose, onSave, initialData = {}, mode = 'tamba
         target_donasi: initialData.target_donasi || 0,
         status: initialData.status || '',
       });
-
-      if (initialData.gambar) {
-        setPreview(`http://localhost:5000${initialData.gambar}`);
-      }
+      setPreview(
+        initialData.gambar
+          ? `http://localhost:5000${initialData.gambar}`
+          : null,
+      );
+      setGambar(null);
+    } else if (mode === 'tambah') {
+      setForm({
+        judul_program: '',
+        deskripsi: '',
+        id_kategori: '',
+        tgl_mulai: '',
+        tgl_berakhir: '',
+        target_donasi: 0,
+        status: '',
+      });
+      setPreview(null);
+      setGambar(null);
     }
-  }, [initialData]);
+  }, [initialData, isOpen, mode]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -89,73 +109,97 @@ const ModalProgram = ({ isOpen, onClose, onSave, initialData = {}, mode = 'tamba
           {mode === 'tambah' ? 'Tambah Program Donasi' : 'Edit Program Donasi'}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <Input label="Judul Program" name="judul_program" value={form.judul_program} onChange={handleChange} />
-          <Textarea label="Deskripsi" name="deskripsi" value={form.deskripsi} onChange={handleChange} />
+          <Input
+            label="Judul Program"
+            name="judul_program"
+            value={form.judul_program}
+            onChange={handleChange}
+          />
+          <Textarea
+            label="Deskripsi"
+            name="deskripsi"
+            value={form.deskripsi}
+            onChange={handleChange}
+          />
 
-          {/* ✅ Dropdown Kategori */}
+          {/* Dropdown Kategori */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
-           <select
-  name="id_kategori"
-  value={form.id_kategori}
-  onChange={handleChange}
-  required
-  className="w-full border px-3 py-2 rounded-md"
->
-  <option value="">-- Pilih Kategori --</option>
-  {kategoriList.map((kategori) => (
-    <option key={kategori.id_kategori} value={kategori.id_kategori}>
-      {kategori.jenis_kategori}
-    </option>
-  ))}
-</select>
-
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Kategori
+            </label>
+            <select
+              name="id_kategori"
+              value={form.id_kategori}
+              onChange={handleChange}
+              required
+              className="w-full border px-3 py-2 rounded-md"
+            >
+              <option value="">-- Pilih Kategori --</option>
+              {kategoriList.map((kategori) => (
+                <option key={kategori.id_kategori} value={kategori.id_kategori}>
+                  {kategori.jenis_kategori}
+                </option>
+              ))}
+            </select>
           </div>
 
-         <Input
-  type="date"
-  label="Tanggal Mulai"
-  name="tgl_mulai"
-  value={form.tgl_mulai}
-  onChange={handleChange}
-  required
-/>
-<Input
-  type="date"
-  label="Tanggal Berakhir"
-  name="tgl_berakhir"
-  value={form.tgl_berakhir}
-  onChange={handleChange}
-  required
-/>
+          <Input
+            type="date"
+            label="Tanggal Mulai"
+            name="tgl_mulai"
+            value={form.tgl_mulai}
+            onChange={handleChange}
+            required
+          />
+          <Input
+            type="date"
+            label="Tanggal Berakhir"
+            name="tgl_berakhir"
+            value={form.tgl_berakhir}
+            onChange={handleChange}
+            required
+          />
 
-          <Input label="Target Donasi" name="target_donasi" value={form.target_donasi} onChange={handleChange} type="number" />
+          <Input
+            label="Target Donasi"
+            name="target_donasi"
+            value={form.target_donasi}
+            onChange={handleChange}
+            type="number"
+          />
           <div>
-  <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-  <select
-    name="status"
-    value={form.status}
-    onChange={handleChange}
-    required
-    className="w-full border px-3 py-2 rounded-md"
-  >
-    <option value="">-- Pilih Status --</option>
-    <option value="Aktif">Aktif</option>
-    <option value="Tidak Aktif">Tidak Aktif</option>
-  </select>
-</div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Status
+            </label>
+            <select
+              name="status"
+              value={form.status}
+              onChange={handleChange}
+              required
+              className="w-full border px-3 py-2 rounded-md"
+            >
+              <option value="">-- Pilih Status --</option>
+              <option value="Aktif">Aktif</option>
+              <option value="Tidak Aktif">Tidak Aktif</option>
+            </select>
+          </div>
 
-
-          {/* ✅ Gambar */}
+          {/* Gambar */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Gambar</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Gambar
+            </label>
             <input type="file" accept="image/*" onChange={handleImageChange} />
             {preview && (
-              <img src={preview} alt="Preview" className="mt-2 w-40 h-28 object-cover rounded" />
+              <img
+                src={preview}
+                alt="Preview"
+                className="mt-2 w-40 h-28 object-cover rounded"
+              />
             )}
           </div>
 
-          {/* ✅ Tombol */}
+          {/* Tombol */}
           <div className="flex justify-end gap-2 pt-4">
             <button
               type="button"
@@ -180,7 +224,9 @@ const ModalProgram = ({ isOpen, onClose, onSave, initialData = {}, mode = 'tamba
 // Komponen input
 const Input = ({ label, name, value, onChange, type = 'text' }) => (
   <div>
-    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+    <label className="block text-sm font-medium text-gray-700 mb-1">
+      {label}
+    </label>
     <input
       type={type}
       name={name}
@@ -193,7 +239,9 @@ const Input = ({ label, name, value, onChange, type = 'text' }) => (
 
 const Textarea = ({ label, name, value, onChange }) => (
   <div>
-    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+    <label className="block text-sm font-medium text-gray-700 mb-1">
+      {label}
+    </label>
     <textarea
       name={name}
       value={value}
@@ -205,3 +253,4 @@ const Textarea = ({ label, name, value, onChange }) => (
 );
 
 export default ModalProgram;
+
