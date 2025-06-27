@@ -49,8 +49,12 @@ const ModalProgram = ({
         judul_program: initialData.judul_program || '',
         deskripsi: initialData.deskripsi || '',
         id_kategori: initialData.id_kategori || '',
-        tgl_mulai: initialData.tgl_mulai || '',
-        tgl_berakhir: initialData.tgl_berakhir || '',
+        tgl_mulai: initialData.tgl_mulai
+          ? new Date(initialData.tgl_mulai).toISOString().slice(0, 10)
+          : '',
+        tgl_berakhir: initialData.tgl_berakhir
+          ? new Date(initialData.tgl_berakhir).toISOString().slice(0, 10)
+          : '',
         target_donasi: initialData.target_donasi || 0,
         status: initialData.status || '',
       });

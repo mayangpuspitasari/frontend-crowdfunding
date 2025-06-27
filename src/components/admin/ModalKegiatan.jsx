@@ -46,7 +46,9 @@ const ModalKegiatan = ({
         judul_kegiatan: initialData.judul_kegiatan || '',
         deskripsi: initialData.deskripsi || '',
         id_program: initialData.id_program || '',
-        tanggal_kegiatan: initialData.tanggal_kegiatan || '',
+        tanggal_kegiatan: initialData.tanggal_kegiatan
+          ? new Date(initialData.tanggal_kegiatan).toISOString().slice(0, 10)
+          : '',
       });
 
       if (initialData.gambar) {

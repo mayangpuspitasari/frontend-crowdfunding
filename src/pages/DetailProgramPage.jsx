@@ -31,7 +31,7 @@ const DetailProgramPage = () => {
 
   return (
     <DetailProgram
-      id_program = {program.id_program}
+      id_program={program.id_program}
       judul={program.judul_program}
       terkumpul={program.total_terkumpul}
       target={program.target_donasi}
@@ -39,6 +39,7 @@ const DetailProgramPage = () => {
         (program.total_terkumpul / program.target_donasi) * 100,
       )}
       sisa_hari={program.sisa_hari}
+      status={program.status}
       donatur={program.jumlah_donatur}
       deskripsi={program.deskripsi}
       gambar={program.gambar}

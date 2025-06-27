@@ -60,6 +60,7 @@ const SemuaDonasi = () => {
                 hariLagi={item.hari_tersisa}
                 donatur={item.jumlah_donatur}
                 gambar={item.gambar}
+                status={item.status}
               />
             ))}
           </div>

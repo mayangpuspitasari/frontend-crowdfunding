@@ -11,6 +11,7 @@ const DetailProgram = ({
   donatur,
   deskripsi,
   gambar,
+  status,
 }) => {
   const navigate = useNavigate();
 
@@ -19,6 +20,11 @@ const DetailProgram = ({
 
     if (!id_user) {
       alert('Silakan login terlebih dahulu untuk melakukan donasi.');
+      return;
+    }
+
+    if (status == 'Tidak Aktif') {
+      alert('Program Ini Sudah Tidak Aktif');
       return;
     }
 
@@ -58,8 +64,17 @@ const DetailProgram = ({
         </div>
 
         <div className="flex justify-between text-sm text-gray-500 mt-1">
-          <span>Terkumpul {persentase}%</span>
-          <span>Dari Rp {Number(target).toLocaleString('id-ID')}</span>
+          <span>
+            Terkumpul {persentase}% Dari Rp{' '}
+            {Number(target).toLocaleString('id-ID')}
+          </span>
+          <span
+            className={`font-semibold ${
+              status === 'Aktif' ? 'text-green-600' : 'text-red-600'
+            }`}
+          >
+            {status}
+          </span>
         </div>
       </div>
 
@@ -81,7 +96,9 @@ const DetailProgram = ({
 
       {/* Komentar */}
       <div className="mt-12 border-t pt-8">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Tinggalkan Komentar</h2>
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+          Tinggalkan Komentar
+        </h2>
         <Komentar id_program={id_program} />
       </div>
     </div>
@@ -89,3 +106,4 @@ const DetailProgram = ({
 };
 
 export default DetailProgram;
+

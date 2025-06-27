@@ -8,6 +8,7 @@ const CardProgram = ({
   hariLagi = 0,
   donatur = 0,
   gambar = '',
+  status = '',
 }) => {
   const progress = Math.min(terkumpul / target, 1);
 
@@ -31,9 +32,19 @@ const CardProgram = ({
             </h3>
           </Link>
           <p className="text-gray-600 text-sm">Donasi Terkumpul</p>
-          <p className="font-bold text-orange-500 text-lg">
-            Rp {Number(terkumpul).toLocaleString('id-ID')}
-          </p>
+
+          <div className="flex justify-between text-sm text-gray-500 mt-2">
+            <span className="font-bold text-orange-500 text-lg">
+              Rp {Number(terkumpul).toLocaleString('id-ID')}
+            </span>
+            <span
+              className={`font-semibold ${
+                status === 'Aktif' ? 'text-green-600' : 'text-red-600'
+              }`}
+            >
+              {status}
+            </span>
+          </div>
 
           <div className="w-full bg-gray-200 rounded-full h-3 mt-2">
             <div
