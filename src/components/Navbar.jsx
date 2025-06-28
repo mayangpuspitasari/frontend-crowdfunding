@@ -12,6 +12,7 @@ const Navbar = () => {
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const profileDropdownRef = useRef(null);
   const location = useLocation();
+  const [fotoProfil, setFotoProfil] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -74,6 +75,28 @@ const Navbar = () => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    const fetchFoto = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        const res = await fetch('http://localhost:5000/user/profile', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+
+        if (data.foto) {
+          setFotoProfil(`http://localhost:5000${data.foto}`);
+        }
+      } catch (err) {
+        console.error('Gagal memuat foto profil:', err);
+      }
+    };
+
+    fetchFoto();
+  }, [location]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -198,7 +221,15 @@ const Navbar = () => {
                 onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
                 className="flex items-center gap-2 text-gray-700 hover:text-orange-500 text-xl"
               >
-                <FaUserCircle className="text-3xl" />
+                {fotoProfil ? (
+                  <img
+                    src={fotoProfil}
+                    alt="Foto Profil"
+                    className="w-10 h-10 rounded-full object-cover border-2 border-orange-400"
+                  />
+                ) : (
+                  <FaUserCircle className="text-3xl text-orange-400" />
+                )}
               </button>
 
               {profileDropdownOpen && (

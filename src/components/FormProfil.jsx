@@ -1,48 +1,137 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import ModalUser from './ModalUser';
 
 const FormProfil = () => {
-  const [foto, setFoto] = useState(null);
+  const [fotoPreview, setFotoPreview] = useState(null);
+  const [tanggalGabung, setTanggalGabung] = useState('');
   const [form, setForm] = useState({
     nama: '',
-    password: '',
     email: '',
-    noHp: '',
+    no_hp: '',
+    password: '',
   });
 
-  const handleInputChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFoto(URL.createObjectURL(file));
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const res = await axios.get('http://localhost:5000/user/profile', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const data = res.data;
+        setForm({
+          nama: data.nama || '',
+          email: data.email || '',
+          no_hp: data.no_hp || '',
+          password: '',
+        });
+
+        if (data.foto) {
+          setFotoPreview(`http://localhost:5000${data.foto}`);
+        }
+
+        const tgl = new Date(data.tanggal_daftar).toLocaleDateString('id-ID', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+        });
+        setTanggalGabung(tgl);
+      } catch (err) {
+        console.error('Gagal mengambil profil:', err);
+        toast.error('Gagal memuat profil');
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
+  const handleUpdate = async (formData) => {
+    const token = localStorage.getItem('token');
+
+    try {
+      const res = await axios.put(
+        'http://localhost:5000/user/profile',
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        },
+      );
+
+      toast.success(res.data.message || 'Profil berhasil diperbarui');
+      setIsModalOpen(false);
+    } catch (err) {
+      console.error('Gagal update profil:', err);
+      toast.error('Gagal memperbarui profil');
     }
   };
 
   return (
-    <div className="bg-orange-50 rounded-lg p-6 flex flex-col md:flex-row items-center gap-6">
-      <div className="flex flex-col items-center">
-        <div className="w-28 h-28 rounded-full bg-gray-300 overflow-hidden">
-          {foto ? (
-            <img src={foto} alt="Foto Profil" className="w-full h-full object-cover" />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-gray-500">No Image</div>
-          )}
+    <>
+      <div className="flex justify-center mt-10 px-4">
+        <div className="bg-white shadow-lg rounded-2xl p-8 border border-orange-100 w-full max-w-4xl">
+          <div className="grid md:grid-cols-3 gap-8 items-center">
+            {/* Foto Profil */}
+            <div className="flex justify-center md:justify-start">
+              <div className="w-32 h-32 rounded-full border-4 border-orange-300 overflow-hidden shadow-md">
+                {fotoPreview ? (
+                  <img
+                    src={fotoPreview}
+                    alt="Foto Profil"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm bg-gray-100">
+                    Tidak Ada Gambar
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Info Profil */}
+            <div className="md:col-span-2 space-y-2">
+              <p className="text-sm text-gray-500 italic">
+                Bergabung sejak: {tanggalGabung}
+              </p>
+              <h2 className="text-2xl font-bold text-orange-600">
+                {form.nama}
+              </h2>
+              <p className="text-gray-700">
+                <span className="font-medium">Email:</span> {form.email}
+              </p>
+              <p className="text-gray-700">
+                <span className="font-medium">No HP:</span> {form.no_hp}
+              </p>
+
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="mt-4 bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-all"
+              >
+                Edit Profil
+              </button>
+            </div>
+          </div>
         </div>
-        <input type="file" onChange={handleFileChange} className="mt-2 text-sm" />
       </div>
 
-      <div className="w-full space-y-2">
-        <p className="text-sm text-gray-600">Tanggal Bergabung: 1 Januari 2025</p>
-        <input type="text" name="nama" placeholder="Nama" value={form.nama} onChange={handleInputChange} className="w-full p-2 rounded border" />
-        <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleInputChange} className="w-full p-2 rounded border" />
-        <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleInputChange} className="w-full p-2 rounded border" />
-        <input type="text" name="noHp" placeholder="No HP" value={form.noHp} onChange={handleInputChange} className="w-full p-2 rounded border" />
-        <button className="bg-orange-400 text-white px-4 py-2 rounded hover:bg-orange-500">Edit Profil</button>
-      </div>
-    </div>
+      <ModalUser
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleUpdate}
+        initialData={form}
+        mode="edit"
+      />
+    </>
   );
 };
 
 export default FormProfil;
+
