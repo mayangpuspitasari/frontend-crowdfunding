@@ -1,7 +1,18 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Donasi = ({ program }) => {
   const [rekening, setRekening] = useState('');
+  const [form, setForm] = useState({
+    nama: '',
+    jumlah_donasi: '',
+    dukungan: '',
+    bukti: null,
+    anonymous: false,
+  });
+
+  const id_user = localStorage.getItem('id_user');
 
   useEffect(() => {
     const fetchRekening = async () => {
@@ -17,6 +28,38 @@ const Donasi = ({ program }) => {
     fetchRekening();
   }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!form.bukti) {
+      return toast.error('Bukti transfer wajib diunggah!');
+    }
+
+    const formData = new FormData();
+    formData.append('id_user', id_user);
+    formData.append('jumlah_donasi', form.jumlah_donasi);
+    formData.append('dukungan', form.dukungan);
+    formData.append('id_program', program.id_program);
+    formData.append('anonymous', form.anonymous ? 1 : 0);
+    formData.append('bukti_pembayaran', form.bukti);
+
+    try {
+      await axios.post('http://localhost:5000/donasi', formData);
+      toast.success('Donasi berhasil dikirim!');
+      // Reset form jika perlu
+      setForm({
+        nama: '',
+        jumlah_donasi: '',
+        dukungan: '',
+        bukti: null,
+        anonymous: false,
+      });
+    } catch (err) {
+      toast.error('Gagal mengirim donasi.');
+      console.error(err);
+    }
+  };
+
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-8">
       <div className="bg-orange-100 text-center py-5 px-4 rounded-md mb-6">
@@ -28,13 +71,15 @@ const Donasi = ({ program }) => {
         </h2>
       </div>
 
-      <form className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block text-gray-700 font-medium mb-1">Nama:</label>
           <input
             type="text"
-            className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"
+            className="w-full border border-gray-300 px-4 py-2 rounded-md"
+            value={form.nama}
             placeholder="Nama Anda"
+            onChange={(e) => setForm({ ...form, nama: e.target.value })}
           />
         </div>
 
@@ -48,7 +93,6 @@ const Donasi = ({ program }) => {
             value={program.judul_program}
             disabled
           />
-          <input type="hidden" name="judul" value={program.judul_program} />
         </div>
 
         <div>
@@ -58,7 +102,11 @@ const Donasi = ({ program }) => {
           <input
             type="number"
             className="w-full border border-gray-300 px-4 py-2 rounded-md"
+            value={form.jumlah_donasi}
             placeholder="Contoh: 100000"
+            onChange={(e) =>
+              setForm({ ...form, jumlah_donasi: e.target.value })
+            }
           />
         </div>
 
@@ -67,21 +115,34 @@ const Donasi = ({ program }) => {
             Dukungan dan Doa:
           </label>
           <textarea
-            className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"
+            className="w-full border border-gray-300 px-4 py-2 rounded-md"
             rows="4"
+            value={form.dukungan}
             placeholder="Tulis doa terbaik Anda..."
-          ></textarea>
+            onChange={(e) => setForm({ ...form, dukungan: e.target.value })}
+          />
         </div>
 
         <div>
           <label className="block text-gray-700 font-medium mb-1">
             Bukti Transfer:
           </label>
-          <input type="file" className="w-full border px-3 py-2 rounded-md" />
+          <input
+            type="file"
+            accept="image/*"
+            className="w-full border px-3 py-2 rounded-md"
+            onChange={(e) => setForm({ ...form, bukti: e.target.files[0] })}
+          />
         </div>
 
         <div className="flex items-center">
-          <input type="checkbox" id="anonim" className="accent-orange-500" />
+          <input
+            type="checkbox"
+            id="anonim"
+            className="accent-orange-500"
+            checked={form.anonymous}
+            onChange={(e) => setForm({ ...form, anonymous: e.target.checked })}
+          />
           <label htmlFor="anonim" className="ml-2 text-gray-700">
             Donasi sebagai Anonymous
           </label>

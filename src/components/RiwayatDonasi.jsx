@@ -9,7 +9,10 @@ const RiwayatDonasi = () => {
     const fetchRiwayat = async () => {
       try {
         const id_user = localStorage.getItem('id_user');
-        const res = await axios.get(`http://localhost:5000/user/${id_user}`);
+        console.log('ID user:', id_user);
+        const res = await axios.get(
+          `http://localhost:5000/donasi/riwayat/${id_user}`,
+        );
         setRiwayat(res.data);
       } catch (err) {
         console.error('Gagal mengambil riwayat:', err);
