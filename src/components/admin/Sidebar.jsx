@@ -98,7 +98,7 @@ const Sidebar = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <NavLink
-                  to="/admin/profil"
+                  to="/admin/profil-admin"
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-3 py-2 rounded-md transition ${
                       isActive

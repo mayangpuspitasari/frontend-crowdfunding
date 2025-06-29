@@ -29,7 +29,8 @@ import KelolaProgramPage from './pages/KelolaProgramPage';
 import KelolaKategoriPage from './pages/KelolaKategoriPage';
 import KelolaDonasiPage from './pages/KelolaDonasiPage';
 import KelolaKegiatanPage from './pages/KelolaKegiatanPage';
-
+import KelolaKomentarPage from './pages/KelolaKomentarPage';
+import ProfilAdminPage from './pages/ProfilAdminPage';
 //Pimpinan Pages
 import DashboardPimpinan from './pages/DashboardPimpinan';
 
@@ -76,6 +77,8 @@ function App() {
               <Route path="/admin/kategori" element={<KelolaKategoriPage />} />
               <Route path="/admin/donasi" element={<KelolaDonasiPage />} />
               <Route path="/admin/kegiatan" element={<KelolaKegiatanPage />} />
+              <Route path="/admin/komentar" element={<KelolaKomentarPage />} />
+              <Route path="/admin/profil-admin" element={<ProfilAdminPage />} />
             </Route>
           </Route>
 
