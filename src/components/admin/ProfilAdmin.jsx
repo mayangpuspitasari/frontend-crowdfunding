@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import ModalUser from './ModalUser';
+import ModalUser from '../ModalUser';
 
 const ProfilAdmin = () => {
   const [fotoPreview, setFotoPreview] = useState(null);

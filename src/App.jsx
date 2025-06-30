@@ -31,6 +31,8 @@ import KelolaDonasiPage from './pages/KelolaDonasiPage';
 import KelolaKegiatanPage from './pages/KelolaKegiatanPage';
 import KelolaKomentarPage from './pages/KelolaKomentarPage';
 import ProfilAdminPage from './pages/ProfilAdminPage';
+import KelolaLaporanPage from './pages/KelolaLaporanPage';
+
 //Pimpinan Pages
 import DashboardPimpinan from './pages/DashboardPimpinan';
 
@@ -79,6 +81,7 @@ function App() {
               <Route path="/admin/kegiatan" element={<KelolaKegiatanPage />} />
               <Route path="/admin/komentar" element={<KelolaKomentarPage />} />
               <Route path="/admin/profil-admin" element={<ProfilAdminPage />} />
+              <Route path="/admin/laporan" element={<KelolaLaporanPage />} />
             </Route>
           </Route>
 

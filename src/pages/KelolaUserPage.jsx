@@ -5,7 +5,7 @@ import SearchBarAdmin from '../components/admin/SearchBarAdmin';
 import Pagination from '../components/admin/Pagination';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ModalUser from '../components/admin/ModalUser';
+import ModalUser from '../components/ModalUser';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
@@ -20,7 +20,7 @@ const KelolaUserPage = () => {
   const fetchUsers = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/user?page=${page}&search=${search}`
+        `http://localhost:5000/user?page=${page}&search=${search}`,
       );
       setUsers(res.data.data);
       setTotalPages(res.data.totalPages);
@@ -65,7 +65,7 @@ const KelolaUserPage = () => {
       if (selectedUser) {
         await axios.put(
           `http://localhost:5000/user/${selectedUser.id_user}`,
-          formUser
+          formUser,
         );
         toast.success('User berhasil diupdate');
       }
@@ -128,3 +128,4 @@ const KelolaUserPage = () => {
 };
 
 export default KelolaUserPage;
+
