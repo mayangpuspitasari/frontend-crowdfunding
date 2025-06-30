@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import {
   LayoutDashboard,
   Users,
@@ -22,6 +23,7 @@ const Sidebar = () => {
     localStorage.removeItem('role');
     localStorage.removeItem('nama');
     navigate('/'); // Tanpa reload
+    toast.success('Andah Telah Logout');
   };
   const menuItems = [
     {

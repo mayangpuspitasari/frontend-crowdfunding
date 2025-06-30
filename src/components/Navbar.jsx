@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -107,6 +108,7 @@ const Navbar = () => {
     setIsLoggedIn(false);
     setProfileDropdownOpen(false);
     navigate('/'); // Tanpa reload
+    toast.success('Anda Telah Logout');
   };
 
   return (

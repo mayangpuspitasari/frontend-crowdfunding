@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Untuk redirect
 import { Eye, EyeOff } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -36,10 +37,13 @@ const Login = () => {
         // Redirect berdasarkan role
         if (res.data.role.toLowerCase() === 'admin') {
           navigate('/admin/dashboard');
+          toast.success('Anda Berhasil Login');
         } else if (res.data.role.toLowerCase() === 'pimpinan') {
           navigate('/pimpinan/dashboard');
+          toast.success('Anda Berhasil Login');
         } else {
           navigate('/');
+          toast.success('Anda Berhasil Login');
         }
       }
     } catch (err) {

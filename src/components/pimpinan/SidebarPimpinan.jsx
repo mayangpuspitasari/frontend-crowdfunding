@@ -1,6 +1,7 @@
 import { LayoutDashboard, FileText, Settings, LogOut } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SidebarPimpinan = () => {
   const navigate = useNavigate();
@@ -10,14 +11,15 @@ const SidebarPimpinan = () => {
     localStorage.removeItem('role');
     localStorage.removeItem('nama');
     navigate('/'); // Tanpa reload
+    toast.success('Anda Telah Logout');
   };
   const menuItems = [
     {
-      to: '/admin/dashboard',
+      to: '/pimpinan/dashboard',
       icon: <LayoutDashboard size={18} />,
       label: 'Dashboard',
     },
-    { to: '/admin/laporan', icon: <FileText size={18} />, label: 'Laporan' },
+    { to: '/pimpinan/laporan', icon: <FileText size={18} />, label: 'Laporan' },
   ];
 
   return (
@@ -60,7 +62,7 @@ const SidebarPimpinan = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <NavLink
-                  to="/admin/profil"
+                  to="/pimpinan/profil-pimpinan"
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-3 py-2 rounded-md transition ${
                       isActive

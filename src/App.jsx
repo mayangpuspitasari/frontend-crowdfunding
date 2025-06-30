@@ -35,6 +35,7 @@ import KelolaLaporanPage from './pages/KelolaLaporanPage';
 
 //Pimpinan Pages
 import DashboardPimpinan from './pages/DashboardPimpinan';
+import ProfilPimpinanPage from './pages/ProfilPimpinanPage';
 
 function App() {
   return (
@@ -91,6 +92,10 @@ function App() {
               <Route
                 path="/pimpinan/dashboard"
                 element={<DashboardPimpinan />}
+              />
+              <Route
+                path="/pimpinan/profil-pimpinan"
+                element={<ProfilPimpinanPage />}
               />
             </Route>
           </Route>
