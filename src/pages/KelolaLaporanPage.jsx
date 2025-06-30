@@ -63,7 +63,7 @@ const KelolaLaporanPage = () => {
               <SearchBarAdmin
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Cari Program Donasi"
+                placeholder="Cari Data Laporan"
               />
             </div>
 
