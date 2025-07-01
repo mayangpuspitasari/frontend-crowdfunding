@@ -36,6 +36,7 @@ const Header = () => {
     if (path.includes('/kegiatan')) return 'Kelola Kegiatan';
     if (path.includes('/donasi')) return 'Kelola Donasi';
     if (path.includes('/laporan')) return 'Laporan Donasi';
+    if (path.includes('/instansi')) return 'Kelola Instansi';
     return 'Dashboard Admin';
   };
 

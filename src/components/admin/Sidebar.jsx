@@ -11,7 +11,8 @@ import {
   FileText,
   Settings,
   LogOut,
-} from 'lucide-react';
+  Building2,
+} from 'lucide-react'; // ✅ kamu juga bisa pakai Building2 agar lebih sesuai
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
@@ -22,16 +23,21 @@ const Sidebar = () => {
     localStorage.removeItem('id_user');
     localStorage.removeItem('role');
     localStorage.removeItem('nama');
-    navigate('/'); // Tanpa reload
-    toast.success('Andah Telah Logout');
+    navigate('/');
+    toast.success('Anda Telah Logout');
   };
+
   const menuItems = [
     {
       to: '/admin/dashboard',
       icon: <LayoutDashboard size={18} />,
       label: 'Dashboard',
     },
-    { to: '/admin/user', icon: <Users size={18} />, label: 'Kelola User' },
+    {
+      to: '/admin/user',
+      icon: <Users size={18} />,
+      label: 'Kelola User',
+    },
     {
       to: '/admin/program',
       icon: <Heart size={18} />,
@@ -57,7 +63,16 @@ const Sidebar = () => {
       icon: <MessageSquare size={18} />,
       label: 'Kelola Komentar',
     },
-    { to: '/admin/laporan', icon: <FileText size={18} />, label: 'Laporan' },
+    {
+      to: '/admin/instansi',
+      icon: <Building2 size={18} />, // ✅ Icon Instansi
+      label: 'Kelola Instansi',
+    },
+    {
+      to: '/admin/laporan',
+      icon: <FileText size={18} />,
+      label: 'Laporan',
+    },
   ];
 
   return (
