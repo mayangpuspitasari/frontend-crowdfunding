@@ -37,6 +37,7 @@ import KelolaInstansiPage from './pages/KelolaInstansiPage';
 //Pimpinan Pages
 import DashboardPimpinan from './pages/DashboardPimpinan';
 import ProfilPimpinanPage from './pages/ProfilPimpinanPage';
+import KelolaLaporanPimpinanPage from './pages/KelolaLaporanPimpinanPage';
 
 function App() {
   return (
@@ -83,6 +84,7 @@ function App() {
               <Route path="/admin/kegiatan" element={<KelolaKegiatanPage />} />
               <Route path="/admin/komentar" element={<KelolaKomentarPage />} />
               <Route path="/admin/profil-admin" element={<ProfilAdminPage />} />
+              <Route path="/admin/laporan" element={<KelolaLaporanPage />} />
               <Route path="/admin/instansi" element={<KelolaInstansiPage />} />
             </Route>
           </Route>
@@ -98,15 +100,10 @@ function App() {
                 path="/pimpinan/profil-pimpinan"
                 element={<ProfilPimpinanPage />}
               />
-            </Route>
-          </Route>
-
-          {/* PIMPINAN DAN ADMIN */}
-          <Route
-            element={<ProtectedRoute allowedRoles={['pimpinan', 'admin']} />}
-          >
-            <Route element={<PimpinanLayout />}>
-              <Route path="/admin/laporan" element={<KelolaLaporanPage />} />
+              <Route
+                path="/pimpinan/laporan"
+                element={<KelolaLaporanPimpinanPage />}
+              />
             </Route>
           </Route>
         </Routes>
