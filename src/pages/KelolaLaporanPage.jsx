@@ -5,7 +5,6 @@ import Pagination from '../components/admin/Pagination';
 import LaporanTable from '../components/admin/LaporanTable';
 
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -14,8 +13,6 @@ const KelolaLaporanPage = () => {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
-  const navigate = useNavigate();
 
   const fetchLaporan = async () => {
     try {
@@ -33,8 +30,9 @@ const KelolaLaporanPage = () => {
     fetchLaporan();
   }, [page, search]);
 
-  const DetailLaporan = (laporan) => {
-    navigate(`/laporan/detail/${laporan.id_program}`);
+  const handleDetail = (laporan) => {
+    const id = laporan.id_program;
+    window.open(`http://localhost:5000/download/export/detail/${id}`, '_blank');
   };
 
   const handleCetakLaporan = () => {
@@ -67,7 +65,7 @@ const KelolaLaporanPage = () => {
               />
             </div>
 
-            <LaporanTable data={laporan} onDetail={DetailLaporan} />
+            <LaporanTable data={laporan} onDetail={handleDetail} />
 
             <Pagination
               page={page}

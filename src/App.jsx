@@ -83,7 +83,6 @@ function App() {
               <Route path="/admin/kegiatan" element={<KelolaKegiatanPage />} />
               <Route path="/admin/komentar" element={<KelolaKomentarPage />} />
               <Route path="/admin/profil-admin" element={<ProfilAdminPage />} />
-              <Route path="/admin/laporan" element={<KelolaLaporanPage />} />
               <Route path="/admin/instansi" element={<KelolaInstansiPage />} />
             </Route>
           </Route>
@@ -99,6 +98,15 @@ function App() {
                 path="/pimpinan/profil-pimpinan"
                 element={<ProfilPimpinanPage />}
               />
+            </Route>
+          </Route>
+
+          {/* PIMPINAN DAN ADMIN */}
+          <Route
+            element={<ProtectedRoute allowedRoles={['pimpinan', 'admin']} />}
+          >
+            <Route element={<PimpinanLayout />}>
+              <Route path="/admin/laporan" element={<KelolaLaporanPage />} />
             </Route>
           </Route>
         </Routes>
