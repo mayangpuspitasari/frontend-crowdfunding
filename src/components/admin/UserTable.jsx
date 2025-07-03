@@ -22,7 +22,9 @@ const UserTable = ({ data, onEdit, onDelete }) => {
               <td className="px-4 py-2 text-center">{user.nama}</td>
               <td className="px-4 py-2 text-center">{user.email}</td>
               <td className="px-4 py-2 text-center">{user.no_hp}</td>
-              <td className="px-4 py-2 text-center">{user.tanggal_daftar}</td>
+              <td className="px-4 py-2 text-center">
+                {new Date(user.tanggal_daftar).toLocaleDateString('id-ID')}
+              </td>
               <td className="px-4 py-2 space-x-2 text-center">
                 <button
                   className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition"
@@ -46,5 +48,4 @@ const UserTable = ({ data, onEdit, onDelete }) => {
 };
 
 export default UserTable;
-
 

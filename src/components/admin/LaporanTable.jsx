@@ -22,10 +22,15 @@ const LaporanTable = ({ data, onDetail }) => {
             >
               <td className="px-4 py-2 text-center">{i + 1}</td>
               <td className="px-4 py-2 text-center">{laporan.judul_program}</td>
-              <td className="px-4 py-2 text-center">{laporan.target_donasi}</td>
               <td className="px-4 py-2 text-center">
-                {laporan.total_terkumpul}
+                Rp{' '}
+                {new Intl.NumberFormat('id-ID').format(laporan.target_donasi)}
               </td>
+              <td className="px-4 py-2 text-center">
+                Rp{' '}
+                {new Intl.NumberFormat('id-ID').format(laporan.total_terkumpul)}
+              </td>
+
               <td className="px-4 py-2 text-center">{laporan.total_donatur}</td>
               <td className="px-4 py-2 text-center">
                 {new Date(laporan.tgl_mulai).toLocaleDateString('id-ID')}
