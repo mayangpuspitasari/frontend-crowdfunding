@@ -46,13 +46,13 @@ const Footer = () => {
   return (
     <footer className="mt-20 bg-zinc-800 text-white">
       {/* Konten utama */}
-      <div className="max-w-screen-xl  mx-auto px-20 py-5 grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="max-w-screen-xl mx-auto px-4 md:px-8 py-8 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Tentang Kami */}
         <div>
-          <h2 className="text-xl font-bold text-orange-400 mb-3">
+          <h2 className="text-lg md:text-xl font-bold text-orange-400 mb-3">
             Tentang Kami
           </h2>
-          <p className="text-sm text-gray-300 leading-relaxed">
+          <p className="text-sm text-gray-300 leading-relaxed text-justify">
             LAZISMU (Lembaga Amil Zakat, Infaq, dan Shadaqah Muhammadiyah)
             adalah lembaga zakat resmi milik Muhammadiyah yang berkomitmen untuk
             mengelola dana zakat, infak, dan sedekah secara amanah, transparan,
@@ -63,16 +63,20 @@ const Footer = () => {
         </div>
 
         {/* Alamat */}
-        <div className="px-20 ">
-          <h2 className="text-xl font-bold text-orange-400 mb-3">Alamat</h2>
+        <div>
+          <h2 className="text-lg md:text-xl font-bold text-orange-400 mb-3">
+            Alamat
+          </h2>
           <p className="text-sm text-gray-300 leading-relaxed">
             {footerData.alamat}
           </p>
         </div>
 
         {/* Kontak */}
-        <div className="px-20">
-          <h2 className="text-xl font-bold text-orange-400 mb-3">Kontak</h2>
+        <div>
+          <h2 className="text-lg md:text-xl font-bold text-orange-400 mb-3">
+            Kontak
+          </h2>
 
           <div className="flex items-center text-sm text-gray-300 mb-2">
             <FaPhoneAlt className="text-green-600 mr-2" />
@@ -111,7 +115,7 @@ const Footer = () => {
       </div>
 
       {/* Batas bawah */}
-      <div className="text-center text-xs text-gray-400 border-t border-gray-700 py-4 px-6">
+      <div className="text-center text-xs text-gray-400 border-t border-gray-700 py-4 px-4">
         &copy; {new Date().getFullYear()} LAZISMU Asahan. All rights reserved.
       </div>
     </footer>
