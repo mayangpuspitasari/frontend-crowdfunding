@@ -64,7 +64,7 @@ const RiwayatDonasi = () => {
                   </td>
                   <td
                     className={`p-3 border font-semibold ${
-                      item.status_donasi.toLowerCase() === 'sukses'
+                      item.status_donasi.toLowerCase() === 'berhasil'
                         ? 'text-green-600'
                         : item.status_donasi.toLowerCase() === 'menunggu'
                         ? 'text-yellow-600'

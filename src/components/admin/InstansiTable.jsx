@@ -36,16 +36,18 @@ const InstansiTable = ({ data, onEdit }) => {
       </div>
 
       {/* Struktur Organisasi */}
-      <div>
+      <div className="mt-6">
         <h4 className="font-semibold text-gray-800 mb-2">
           Struktur Organisasi:
         </h4>
         {data.struktur ? (
-          <img
-            src={encodeURI(`http://localhost:5000${data.struktur}`)}
-            alt="Struktur Organisasi"
-            className="w-full max-w-3xl mx-auto rounded shadow-md border border-gray-200"
-          />
+          <div className="overflow-x-auto">
+            <img
+              src={encodeURI(`http://localhost:5000${data.struktur}`)}
+              alt="Struktur Organisasi"
+              className="max-w-full h-auto mx-auto rounded shadow-md border border-gray-200"
+            />
+          </div>
         ) : (
           <p className="text-gray-500 italic text-sm">
             Struktur tidak tersedia.

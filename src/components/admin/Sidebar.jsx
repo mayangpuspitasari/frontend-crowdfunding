@@ -76,8 +76,9 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-white h-screen shadow-lg flex flex-col justify-between border-r p-6">
-      <div>
+    <aside className="w-64 bg-white h-screen shadow-lg flex flex-col border-r p-6">
+      {/* Bagian Atas: Logo dan Menu */}
+      <div className="flex-grow overflow-y-auto">
         <h1 className="text-xl font-bold text-orange-600 mb-8">
           Lazismu Asahan
         </h1>
@@ -133,14 +134,16 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Tombol Logout */}
-      <button
-        onClick={handleLogout}
-        className="mt-10 flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-md text-sm transition"
-      >
-        <LogOut size={18} />
-        Logout
-      </button>
+      {/* Tombol Logout (Selalu di bawah sidebar) */}
+      <div className="pt-4 border-t">
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-md text-sm transition"
+        >
+          <LogOut size={18} />
+          Logout
+        </button>
+      </div>
     </aside>
   );
 };

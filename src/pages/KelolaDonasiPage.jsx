@@ -34,14 +34,27 @@ const KelolaDonasiPage = () => {
 
   // Fungsi hapus donasi
   const handleHapus = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/donasi/${id}`);
-      alert('Donasi berhasil dihapus!');
-      setPage(1); // atau fetch ulang
-    } catch (err) {
-      console.error('Gagal menghapus donasi:', err);
-      alert('Terjadi kesalahan saat menghapus.');
-    }
+    Swal.fire({
+      title: 'Hapus Donasi?',
+      text: 'Apakah kamu yakin ingin menghapus donasi ini?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#aaa',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.delete(`http://localhost:5000/donasi/${id}`);
+          Swal.fire('Berhasil!', 'Donasi berhasil dihapus.', 'success');
+          fetchDonasi();
+        } catch (err) {
+          console.error('Gagal menghapus donasi:', err);
+          Swal.fire('Gagal!', 'Terjadi kesalahan saat menghapus.', 'error');
+        }
+      }
+    });
   };
 
   const handleVerifikasi = (id_donasi) => {

@@ -28,6 +28,21 @@ const Donasi = ({ program }) => {
     fetchRekening();
   }, []);
 
+  useEffect(() => {
+    const fetchNamaUser = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/user/profile/${id_user}`,
+        );
+        setForm((prev) => ({ ...prev, nama: res.data.nama }));
+      } catch (err) {
+        console.error('Gagal mengambil nama user:', err);
+      }
+    };
+
+    if (id_user) fetchNamaUser();
+  }, [id_user]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -44,11 +59,13 @@ const Donasi = ({ program }) => {
     formData.append('bukti_pembayaran', form.bukti);
 
     try {
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+      }
       await axios.post('http://localhost:5000/donasi', formData);
       toast.success('Donasi berhasil dikirim!');
       // Reset form jika perlu
       setForm({
-        nama: '',
         jumlah_donasi: '',
         dukungan: '',
         bukti: null,
@@ -78,8 +95,7 @@ const Donasi = ({ program }) => {
             type="text"
             className="w-full border border-gray-300 px-4 py-2 rounded-md"
             value={form.nama}
-            placeholder="Nama Anda"
-            onChange={(e) => setForm({ ...form, nama: e.target.value })}
+            disabled
           />
         </div>
 

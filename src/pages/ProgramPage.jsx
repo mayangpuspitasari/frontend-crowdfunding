@@ -40,7 +40,9 @@ const ProgramPage = () => {
         {/* Nanti tampilkan list program donasi sesuai kategori */}
       </div>
 
-      <div className="">{!loading && <SemuaDonasi />}</div>
+      <div className="">
+        {!loading && <SemuaDonasi kategori={selectedKategori} />}
+      </div>
     </div>
   );
 };

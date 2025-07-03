@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import CardProgram from './CardProgram';
-import SearchBar from './SearchBar'; // pastikan import komponen search
+import SearchBar from './SearchBar';
+import Pagination from './Pagination';
 import axios from 'axios';
 
-const SemuaDonasi = () => {
+const SemuaDonasi = ({ kategori }) => {
   const [donasi, setDonasi] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [keyword, setKeyword] = useState('');
 
-  const fetchData = async (page, keyword = '') => {
+  const fetchData = async (page, keyword = '', kategori = '') => {
     setIsLoading(true);
     try {
       const res = await axios.get(
         `http://localhost:5000/program?page=${page}&limit=6&search=${encodeURIComponent(
           keyword,
-        )}`,
+        )}&kategori=${encodeURIComponent(kategori)}`,
       );
       setDonasi(res.data.data);
       setTotalPages(res.data.totalPages);
@@ -28,11 +29,11 @@ const SemuaDonasi = () => {
   };
 
   useEffect(() => {
-    fetchData(page, keyword);
-  }, [page, keyword]);
+    fetchData(page, keyword, kategori === 'Semua' ? '' : kategori);
+  }, [page, keyword, kategori]);
 
   const handleSearch = (value) => {
-    setPage(1); // reset ke halaman 1 saat keyword berubah
+    setPage(1);
     setKeyword(value);
   };
 
@@ -65,49 +66,13 @@ const SemuaDonasi = () => {
             ))}
           </div>
 
-          {/* Pagination */}
-          <div className="flex justify-end mt-10">
-            <nav
-              className="inline-flex rounded-md shadow-sm"
-              aria-label="Pagination"
-            >
-              <button
-                onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                disabled={page === 1}
-                className="px-4 py-2 text-sm font-medium bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 disabled:opacity-50"
-              >
-                Prev
-              </button>
-
-              {[...Array(totalPages)].map((_, i) => {
-                const pageNum = i + 1;
-                const isActive = pageNum === page;
-                return (
-                  <button
-                    key={pageNum}
-                    onClick={() => setPage(pageNum)}
-                    className={`px-4 py-2 text-sm font-medium border border-gray-300 ${
-                      isActive
-                        ? 'bg-orange-500 text-white'
-                        : 'bg-white text-gray-700 hover:bg-gray-100'
-                    }`}
-                  >
-                    {pageNum}
-                  </button>
-                );
-              })}
-
-              <button
-                onClick={() =>
-                  setPage((prev) => Math.min(prev + 1, totalPages))
-                }
-                disabled={page === totalPages}
-                className="px-4 py-2 text-sm font-medium bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 disabled:opacity-50"
-              >
-                Next
-              </button>
-            </nav>
-          </div>
+          {totalPages > 1 && (
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              onPageChange={setPage}
+            />
+          )}
         </>
       )}
     </div>
