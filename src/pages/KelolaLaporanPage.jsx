@@ -13,6 +13,8 @@ const KelolaLaporanPage = () => {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
 
   const fetchLaporan = async () => {
     try {
@@ -36,7 +38,14 @@ const KelolaLaporanPage = () => {
   };
 
   const handleCetakLaporan = () => {
-    window.open('http://localhost:5000/download/export/pdf', '_blank');
+    const query = [];
+    if (fromDate) query.push(`from=${fromDate}`);
+    if (toDate) query.push(`to=${toDate}`);
+    const queryString = query.length > 0 ? `?${query.join('&')}` : '';
+    window.open(
+      `http://localhost:5000/download/export/pdf${queryString}`,
+      '_blank',
+    );
   };
 
   return (
@@ -48,6 +57,23 @@ const KelolaLaporanPage = () => {
           <div className="border rounded-lg p-6 bg-white shadow-md">
             <div className="flex justify-between items-center mb-6">
               <h3 className="font-bold text-xl text-gray-800">Data Laporan</h3>
+            </div>
+
+            <div className="flex gap-2 items-center">
+              <label className="text-sm">Dari:</label>
+              <input
+                type="date"
+                value={fromDate}
+                onChange={(e) => setFromDate(e.target.value)}
+                className="border rounded px-2 py-1 text-sm"
+              />
+              <label className="text-sm">Sampai:</label>
+              <input
+                type="date"
+                value={toDate}
+                onChange={(e) => setToDate(e.target.value)}
+                className="border rounded px-2 py-1 text-sm"
+              />
             </div>
 
             <div className="flex items-center justify-between mb-6">
