@@ -23,7 +23,10 @@ const ModalKegiatan = ({
   useEffect(() => {
     const fetchProgram = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/program');
+        const res = await axios.get(
+          'http://localhost:5000/program/all?limit=1000',
+        );
+        console.log('Data Program:', res.data);
 
         // Pastikan ambil array, sesuaikan dengan struktur respons backend kamu
         const dataProgram = Array.isArray(res.data)
@@ -41,7 +44,7 @@ const ModalKegiatan = ({
 
   // Isi ulang form saat edit
   useEffect(() => {
-    if (initialData) {
+    if (mode === 'edit' && initialData) {
       setFormKegiatan({
         judul_kegiatan: initialData.judul_kegiatan || '',
         deskripsi: initialData.deskripsi || '',
@@ -54,8 +57,17 @@ const ModalKegiatan = ({
       if (initialData.gambar) {
         setPreview(`http://localhost:5000${initialData.gambar}`);
       }
+    } else if (mode === 'tambah' && isOpen) {
+      setFormKegiatan({
+        judul_kegiatan: '',
+        deskripsi: '',
+        id_program: '',
+        tanggal_kegiatan: '',
+      });
+      setGambar(null);
+      setPreview(null);
     }
-  }, [initialData]);
+  }, [initialData, mode, isOpen]);
 
   const handleChange = (e) => {
     setFormKegiatan({ ...formKegiatan, [e.target.name]: e.target.value });

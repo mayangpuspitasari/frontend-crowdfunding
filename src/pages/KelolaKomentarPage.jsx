@@ -19,7 +19,7 @@ const KelolaUserPage = () => {
       const res = await axios.get(
         `http://localhost:5000/komentar?page=${page}&search=${search}`,
       );
-      setKomentar(res.data);
+      setKomentar(res.data.data);
       setTotalPages(res.data.totalPages);
     } catch (err) {
       console.error('Gagal mengambil data komentar:', err);

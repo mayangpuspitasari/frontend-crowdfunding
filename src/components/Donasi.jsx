@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -13,6 +13,7 @@ const Donasi = ({ program }) => {
   });
 
   const id_user = localStorage.getItem('id_user');
+  const fileInputRef = useRef();
 
   useEffect(() => {
     const fetchRekening = async () => {
@@ -59,18 +60,20 @@ const Donasi = ({ program }) => {
     formData.append('bukti_pembayaran', form.bukti);
 
     try {
-      for (let pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-      }
       await axios.post('http://localhost:5000/donasi', formData);
       toast.success('Donasi berhasil dikirim!');
-      // Reset form jika perlu
+
       setForm({
+        nama: form.nama,
         jumlah_donasi: '',
         dukungan: '',
         bukti: null,
         anonymous: false,
       });
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = null; // reset file input manual
+      }
     } catch (err) {
       toast.error('Gagal mengirim donasi.');
       console.error(err);
@@ -146,6 +149,7 @@ const Donasi = ({ program }) => {
           <input
             type="file"
             accept="image/*"
+            ref={fileInputRef}
             className="w-full border px-3 py-2 rounded-md"
             onChange={(e) => setForm({ ...form, bukti: e.target.files[0] })}
           />
