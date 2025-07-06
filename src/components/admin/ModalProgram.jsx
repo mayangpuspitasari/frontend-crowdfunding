@@ -22,6 +22,14 @@ const ModalProgram = ({
   const [preview, setPreview] = useState(null);
   const [kategoriList, setKategoriList] = useState([]); // Default array
 
+  const formatTanggalLocal = (tanggal) => {
+    const d = new Date(tanggal);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   //Ambil data kategori
   useEffect(() => {
     const fetchKategori = async () => {
@@ -50,11 +58,12 @@ const ModalProgram = ({
         deskripsi: initialData.deskripsi || '',
         id_kategori: initialData.id_kategori || '',
         tgl_mulai: initialData.tgl_mulai
-          ? new Date(initialData.tgl_mulai).toISOString().slice(0, 10)
+          ? formatTanggalLocal(initialData.tgl_mulai)
           : '',
         tgl_berakhir: initialData.tgl_berakhir
-          ? new Date(initialData.tgl_berakhir).toISOString().slice(0, 10)
+          ? formatTanggalLocal(initialData.tgl_berakhir)
           : '',
+
         target_donasi: initialData.target_donasi || 0,
         status: initialData.status || '',
       });
