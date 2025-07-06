@@ -1,13 +1,14 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+
 import Sidebar from '../components/admin/Sidebar';
 import Header from '../components/admin/Header';
 import UserTable from '../components/admin/UserTable';
 import SearchBarAdmin from '../components/admin/SearchBarAdmin';
 import Pagination from '../components/admin/Pagination';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import ModalUser from '../components/ModalUser';
-import { toast } from 'react-toastify';
-import Swal from 'sweetalert2';
+import ModalUser from '../components/admin/ModalUser';
 
 const KelolaUserPage = () => {
   const [users, setUsers] = useState([]);
@@ -70,6 +71,7 @@ const KelolaUserPage = () => {
         toast.success('User berhasil diupdate');
       }
       setShowModal(false);
+      setSelectedUser(null);
       fetchUsers();
     } catch (err) {
       console.error('Gagal menyimpan user:', err);
@@ -92,12 +94,12 @@ const KelolaUserPage = () => {
               <SearchBarAdmin
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Cari Donatur"
+                placeholder="Cari User"
               />
             </div>
 
             {/* Modal hanya untuk Edit */}
-            {selectedUser && (
+            {showModal && selectedUser && (
               <ModalUser
                 isOpen={showModal}
                 onClose={() => {
@@ -115,6 +117,7 @@ const KelolaUserPage = () => {
               onEdit={handleEditUser}
               onDelete={handleHapusUser}
             />
+
             <Pagination
               page={page}
               onPageChange={setPage}

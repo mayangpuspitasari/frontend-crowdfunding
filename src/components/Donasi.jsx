@@ -12,7 +12,7 @@ const Donasi = ({ program }) => {
     anonymous: false,
   });
 
-  const id_user = localStorage.getItem('id_user');
+  const id_user = sessionStorage.getItem('id_user');
   const fileInputRef = useRef();
 
   useEffect(() => {

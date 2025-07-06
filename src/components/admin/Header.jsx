@@ -9,7 +9,7 @@ const Header = () => {
   useEffect(() => {
     const fetchFoto = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         if (!token) return;
 
         const res = await fetch('http://localhost:5000/user/profile', {
@@ -37,6 +37,7 @@ const Header = () => {
     if (path.includes('/donasi')) return 'Kelola Donasi';
     if (path.includes('/laporan')) return 'Laporan Donasi';
     if (path.includes('/instansi')) return 'Kelola Instansi';
+    if (path.includes('/profil-admin')) return 'Profil Admin';
     return 'Dashboard Admin';
   };
 

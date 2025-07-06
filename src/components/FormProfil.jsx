@@ -15,43 +15,43 @@ const FormProfil = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/user/profile', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+  const fetchUserProfile = async () => {
+    try {
+      const token = sessionStorage.getItem('token');
+      const res = await axios.get('http://localhost:5000/user/profile', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-        const data = res.data;
-        setForm({
-          nama: data.nama || '',
-          email: data.email || '',
-          no_hp: data.no_hp || '',
-          password: '',
-        });
+      const data = res.data;
+      setForm({
+        nama: data.nama || '',
+        email: data.email || '',
+        no_hp: data.no_hp || '',
+        password: '',
+      });
 
-        if (data.foto) {
-          setFotoPreview(`http://localhost:5000${data.foto}`);
-        }
-
-        const tgl = new Date(data.tanggal_daftar).toLocaleDateString('id-ID', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        });
-        setTanggalGabung(tgl);
-      } catch (err) {
-        console.error('Gagal mengambil profil:', err);
-        toast.error('Gagal memuat profil');
+      if (data.foto) {
+        setFotoPreview(`http://localhost:5000${data.foto}`);
       }
-    };
 
+      const tgl = new Date(data.tanggal_daftar).toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      });
+      setTanggalGabung(tgl);
+    } catch (err) {
+      console.error('Gagal mengambil profil:', err);
+      toast.error('Gagal memuat profil');
+    }
+  };
+
+  useEffect(() => {
     fetchUserProfile();
   }, []);
 
   const handleUpdate = async (formData) => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
 
     try {
       const res = await axios.put(
@@ -67,6 +67,7 @@ const FormProfil = () => {
 
       toast.success(res.data.message || 'Profil berhasil diperbarui');
       setIsModalOpen(false);
+      fetchUserProfile(); // Refresh data after update
     } catch (err) {
       console.error('Gagal update profil:', err);
       toast.error('Gagal memperbarui profil');

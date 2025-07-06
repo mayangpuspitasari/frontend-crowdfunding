@@ -25,14 +25,13 @@ const Login = () => {
 
       if (res.data && res.data.token) {
         console.log('Respon Login:', res.data);
-        // Simpan token ke localStorage atau state global
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('role', res.data.role);
+        // Simpan token ke sessionStorage atau state global
+        sessionStorage.setItem('token', res.data.token);
+        sessionStorage.setItem('role', res.data.role);
 
         console.log('Respon Login:', res.data);
-        localStorage.setItem('id_user', res.data.user.id);
-        localStorage.setItem('nama', res.data.user.nama);
-        localStorage.setItem('role', res.data.role);
+        sessionStorage.setItem('id_user', res.data.user.id);
+        sessionStorage.setItem('nama', res.data.user.nama);
 
         // Redirect berdasarkan role
         if (res.data.role.toLowerCase() === 'admin') {

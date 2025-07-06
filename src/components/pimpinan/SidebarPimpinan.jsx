@@ -6,10 +6,10 @@ import { toast } from 'react-toastify';
 const SidebarPimpinan = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id_user');
-    localStorage.removeItem('role');
-    localStorage.removeItem('nama');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('id_user');
+    sessionStorage.removeItem('role');
+    sessionStorage.removeItem('nama');
     navigate('/'); // Tanpa reload
     toast.success('Anda Telah Logout');
   };

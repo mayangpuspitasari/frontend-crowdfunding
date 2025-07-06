@@ -16,7 +16,7 @@ const DetailProgram = ({
   const navigate = useNavigate();
 
   const handleDonasiClick = () => {
-    const id_user = localStorage.getItem('id_user');
+    const id_user = sessionStorage.getItem('id_user');
 
     if (!id_user) {
       alert('Silakan login terlebih dahulu untuk melakukan donasi.');

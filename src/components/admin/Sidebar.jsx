@@ -19,10 +19,10 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id_user');
-    localStorage.removeItem('role');
-    localStorage.removeItem('nama');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('id_user');
+    sessionStorage.removeItem('role');
+    sessionStorage.removeItem('nama');
     navigate('/');
     toast.success('Anda Telah Logout');
   };

@@ -4,7 +4,7 @@ const Komentar = ({ id_program }) => {
   const [komentar, setKomentar] = useState('');
   const [daftarKomentar, setDaftarKomentar] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const id_user = localStorage.getItem('id_user'); // Ambil id_user dari localStorage
+  const id_user = sessionStorage.getItem('id_user'); // Ambil id_user dari sessionStorage
 
   // Ambil komentar dari backend
   const fetchKomentar = async () => {

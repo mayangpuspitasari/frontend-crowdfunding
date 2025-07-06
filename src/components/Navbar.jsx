@@ -18,7 +18,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     setIsLoggedIn(!!token);
   }, [location]);
 
@@ -81,7 +81,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchFoto = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         if (!token) return;
 
         const res = await fetch('http://localhost:5000/user/profile', {
@@ -101,10 +101,10 @@ const Navbar = () => {
   }, [location]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id_user');
-    localStorage.removeItem('role');
-    localStorage.removeItem('nama');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('id_user');
+    sessionStorage.removeItem('role');
+    sessionStorage.removeItem('nama');
     setIsLoggedIn(false);
     setProfileDropdownOpen(false);
     navigate('/'); // Tanpa reload
@@ -154,14 +154,26 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-6 pr-6">
           <ul className="flex gap-6 relative items-center">
             <li>
-              <Link to="/" className="text-gray-700 hover:text-orange-500">
+              <Link
+                to="/"
+                className={`hover:text-orange-500 ${
+                  location.pathname === '/'
+                    ? 'text-orange-500 font-semibold'
+                    : 'text-gray-700'
+                }`}
+              >
                 Beranda
               </Link>
             </li>
+
             <li>
               <Link
                 to="/program"
-                className="text-gray-700 hover:text-orange-500"
+                className={`hover:text-orange-500 ${
+                  location.pathname === '/program'
+                    ? 'text-orange-500 font-semibold'
+                    : 'text-gray-700'
+                }`}
               >
                 Program Donasi
               </Link>
@@ -169,7 +181,11 @@ const Navbar = () => {
             <li>
               <Link
                 to="/kegiatan"
-                className="text-gray-700 hover:text-orange-500"
+                className={`hover:text-orange-500 ${
+                  location.pathname === '/kegiatan'
+                    ? 'text-orange-500 font-semibold'
+                    : 'text-gray-700'
+                }`}
               >
                 Kegiatan
               </Link>
@@ -191,7 +207,7 @@ const Navbar = () => {
                       onClick={() => setDropdownOpen(false)}
                       className="block px-4 py-2 hover:bg-orange-100"
                     >
-                      Profil
+                      Profil Instansi
                     </Link>
                   </li>
                   <li>
@@ -240,7 +256,7 @@ const Navbar = () => {
                   <div className="p-4 border-b">
                     <h4 className="text-xs text-gray-400 mt-2">Nama Donatur</h4>
                     <p className="text-sm text-orange-800">
-                      {localStorage.getItem('nama')}
+                      {sessionStorage.getItem('nama')}
                     </p>
                   </div>
                   <ul className="text-sm text-gray-700">
@@ -323,7 +339,7 @@ const Navbar = () => {
                   onClick={handleMobileNavigate}
                   className="block text-gray-600 hover:text-orange-500"
                 >
-                  Profil
+                  Profil Instansi
                 </Link>
                 <Link
                   to="/cara-berdonasi"

@@ -7,6 +7,7 @@ const UserTable = ({ data, onEdit, onDelete }) => {
             <th className="px-4 py-3">No</th>
             <th className="px-4 py-3">Nama</th>
             <th className="px-4 py-3">Email</th>
+            <th className="px-4 py-3">Password</th>
             <th className="px-4 py-3">No HP</th>
             <th className="px-4 py-3">Tanggal Daftar</th>
             <th className="px-4 py-3">Aksi</th>
@@ -21,6 +22,10 @@ const UserTable = ({ data, onEdit, onDelete }) => {
               <td className="px-4 py-2 text-center">{i + 1}</td>
               <td className="px-4 py-2 text-center">{user.nama}</td>
               <td className="px-4 py-2 text-center">{user.email}</td>
+              <td className="px-4 py-2 text-center">
+                {user.password ? user.password.slice(0, 5) + '*****' : '*****'}
+              </td>
+
               <td className="px-4 py-2 text-center">{user.no_hp}</td>
               <td className="px-4 py-2 text-center">
                 {new Date(user.tanggal_daftar).toLocaleDateString('id-ID')}
