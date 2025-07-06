@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const DonasiTable = ({ data, onVerifikasi, onHapus }) => {
+const DonasiTable = ({ data, onVerifikasi }) => {
   const [selectedBukti, setSelectedBukti] = useState(null);
 
   const handleVerifikasi = (id) => {
@@ -9,11 +9,11 @@ const DonasiTable = ({ data, onVerifikasi, onHapus }) => {
     }
   };
 
-  const handleHapus = (id) => {
-    if (window.confirm('Apakah Anda yakin ingin menghapus donasi ini?')) {
-      onHapus(id);
-    }
-  };
+  // const handleHapus = (id) => {
+  //   if (window.confirm('Apakah Anda yakin ingin menghapus donasi ini?')) {
+  //     onHapus(id);
+  //   }
+  // };
 
   const handleLihatBukti = (url) => {
     if (url) {
@@ -64,7 +64,7 @@ const DonasiTable = ({ data, onVerifikasi, onHapus }) => {
             <th className="px-4 py-3">Tanggal Donasi</th>
             <th className="px-4 py-3">Status Donasi</th>
             <th className="px-4 py-3">Verifikasi</th>
-            <th className="px-4 py-3">Aksi</th>
+            {/* <th className="px-4 py-3">Aksi</th> */}
           </tr>
         </thead>
         <tbody className="text-gray-700">
@@ -119,14 +119,14 @@ const DonasiTable = ({ data, onVerifikasi, onHapus }) => {
                 )}
               </td>
 
-              <td className="px-4 py-2 text-center">
+              {/* <td className="px-4 py-2 text-center">
                 <button
                   onClick={() => handleHapus(donasi.id_donasi)}
                   className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
                 >
                   Hapus
                 </button>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
