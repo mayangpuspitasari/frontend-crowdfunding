@@ -91,9 +91,12 @@ const Navbar = () => {
 
         if (data.foto) {
           setFotoProfil(`http://localhost:5000${data.foto}`);
+        } else {
+          setFotoProfil(null);
         }
       } catch (err) {
         console.error('Gagal memuat foto profil:', err);
+        setFotoProfil(null);
       }
     };
 
@@ -105,6 +108,7 @@ const Navbar = () => {
     sessionStorage.removeItem('id_user');
     sessionStorage.removeItem('role');
     sessionStorage.removeItem('nama');
+    setFotoProfil(null);
     setIsLoggedIn(false);
     setProfileDropdownOpen(false);
     navigate('/'); // Tanpa reload

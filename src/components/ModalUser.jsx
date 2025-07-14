@@ -61,6 +61,11 @@ const ModalUser = ({
     }
 
     onSave(formData);
+    if (foto) {
+      setTimeout(() => {
+        window.location.reload(); // Reload halaman untuk memperbarui foto
+      }, 500); // Reset foto dan preview setelah 1 detik
+    }
   };
 
   if (!isOpen) return null;
