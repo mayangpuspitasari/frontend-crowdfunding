@@ -11,7 +11,7 @@ const LaporanTable = ({ data, onDetail }) => {
             <th className="px-4 py-3">Total Donatur</th>
             <th className="px-4 py-3">Tanggal Mulai</th>
             <th className="px-4 py-3">Tanggal Selesai</th>
-            <th className="px-4 py-3">Aksi</th>
+            <th className="px-4 py-3 no-print">Aksi</th>
           </tr>
         </thead>
         <tbody className="text-gray-700">
@@ -30,7 +30,6 @@ const LaporanTable = ({ data, onDetail }) => {
                 Rp{' '}
                 {new Intl.NumberFormat('id-ID').format(laporan.total_terkumpul)}
               </td>
-
               <td className="px-4 py-2 text-center">{laporan.total_donatur}</td>
               <td className="px-4 py-2 text-center">
                 {new Date(laporan.tgl_mulai).toLocaleDateString('id-ID')}
@@ -38,7 +37,7 @@ const LaporanTable = ({ data, onDetail }) => {
               <td className="px-4 py-2 text-center">
                 {new Date(laporan.tgl_berakhir).toLocaleDateString('id-ID')}
               </td>
-              <td className="px-4 py-2 space-x-2 text-center">
+              <td className="px-4 py-2 space-x-2 text-center no-print">
                 <button
                   className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition"
                   onClick={() => onDetail(laporan)}

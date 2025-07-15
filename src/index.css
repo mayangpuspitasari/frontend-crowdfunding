@@ -1,3 +1,75 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+  html,
+  body {
+    background: white !important;
+    color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    font-size: 12px !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 1.2cm;
+  }
+
+  /* Sembunyikan semua elemen dengan class ini */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Tampilkan khusus area yang akan dicetak */
+  .print-area,
+  .print\:block {
+    display: block !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    background: white !important;
+  }
+
+  .print-area * {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  .print-area table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    font-size: 12px !important;
+  }
+
+  .print-area th,
+  .print-area td {
+    border: 1px solid #000 !important;
+    padding: 6px 8px !important;
+    text-align: center !important;
+  }
+
+  .print-area h2,
+  .print-area h3,
+  .print-area p {
+    margin: 0 !important;
+    padding: 4px 0 !important;
+    font-size: 14px !important;
+  }
+
+  .print-area tr {
+    page-break-inside: avoid !important;
+  }
+
+  /* hindari putus halaman di tengah komponen utama */
+  .print-area {
+    page-break-inside: avoid !important;
+  }
+}
+
