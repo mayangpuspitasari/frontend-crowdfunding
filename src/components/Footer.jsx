@@ -75,7 +75,7 @@ const Footer = () => {
         {/* Kontak */}
         <div>
           <h2 className="text-lg md:text-xl font-bold text-orange-400 mb-3">
-            WA
+            Kontak
           </h2>
 
           <div className="flex items-center text-sm text-gray-300 mb-2">
