@@ -18,7 +18,7 @@ const FormProfil = () => {
   const fetchUserProfile = async () => {
     try {
       const token = sessionStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/user/profile', {
+      const res = await axios.get('http://109.110.188.170:5000/user/profile', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -31,7 +31,7 @@ const FormProfil = () => {
       });
 
       if (data.foto) {
-        setFotoPreview(`http://localhost:5000${data.foto}`);
+        setFotoPreview(`http://109.110.188.170:5000${data.foto}`);
       }
 
       const tgl = new Date(data.tanggal_daftar).toLocaleDateString('id-ID', {
@@ -55,7 +55,7 @@ const FormProfil = () => {
 
     try {
       const res = await axios.put(
-        'http://localhost:5000/user/profile',
+        'http://109.110.188.170:5000/user/profile',
         formData,
         {
           headers: {

@@ -26,9 +26,9 @@ const Navbar = () => {
   useEffect(() => {
     const fetchLogo = async () => {
       try {
-        const res = await fetch('http://localhost:5000/instansi/logo');
+        const res = await fetch('http://109.110.188.170:5000/instansi/logo');
         const data = await res.json();
-        setLogoUrl(`http://localhost:5000${data.logo}`);
+        setLogoUrl(`http://109.110.188.170:5000${data.logo}`);
       } catch (err) {
         console.error('Gagal memuat logo:', err);
       }
@@ -84,13 +84,13 @@ const Navbar = () => {
         const token = sessionStorage.getItem('token');
         if (!token) return;
 
-        const res = await fetch('http://localhost:5000/user/profile', {
+        const res = await fetch('http://109.110.188.170:5000/user/profile', {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
 
         if (data.foto) {
-          setFotoProfil(`http://localhost:5000${data.foto}`);
+          setFotoProfil(`http://109.110.188.170:5000${data.foto}`);
         } else {
           setFotoProfil(null);
         }

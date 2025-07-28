@@ -9,7 +9,7 @@ const Struktur = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5000/instansi/struktur',
+          'http://109.110.188.170:5000/instansi/struktur',
         );
         setStruktur(response.data.struktur); // Ambil hanya URL gambarnya
       } catch (error) {
@@ -35,7 +35,7 @@ const Struktur = () => {
       ) : struktur ? (
         <div className="flex justify-center">
           <img
-            src={encodeURI(`http://localhost:5000${struktur}`)}
+            src={encodeURI(`http://109.110.188.170:5000${struktur}`)}
             alt="Struktur Organisasi"
             className="rounded-lg shadow-xl max-w-full md:max-w-3xl"
           />

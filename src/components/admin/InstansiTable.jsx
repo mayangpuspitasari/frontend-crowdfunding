@@ -11,7 +11,7 @@ const InstansiTable = ({ data, onEdit }) => {
       <div className="flex flex-col items-center">
         {data.logo ? (
           <img
-            src={encodeURI(`http://localhost:5000${data.logo}`)}
+            src={encodeURI(`http://109.110.188.170:5000${data.logo}`)}
             alt="Logo Instansi"
             className="w-32 h-32 object-contain mb-4 border border-gray-300 p-2 rounded"
           />
@@ -43,7 +43,7 @@ const InstansiTable = ({ data, onEdit }) => {
         {data.struktur ? (
           <div className="overflow-x-auto">
             <img
-              src={encodeURI(`http://localhost:5000${data.struktur}`)}
+              src={encodeURI(`http://109.110.188.170:5000${data.struktur}`)}
               alt="Struktur Organisasi"
               className="max-w-full h-auto mx-auto rounded shadow-md border border-gray-200"
             />

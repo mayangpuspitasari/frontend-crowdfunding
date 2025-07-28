@@ -17,7 +17,7 @@ const KelolaUserPage = () => {
   const fetchKomentar = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/komentar?page=${page}&search=${search}`,
+        `http://109.110.188.170:5000/komentar?page=${page}&search=${search}`,
       );
       setKomentar(res.data.data);
       setTotalPages(res.data.totalPages);
@@ -42,7 +42,9 @@ const KelolaUserPage = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:5000/komentar/${id_komentar}`);
+        await axios.delete(
+          `http://109.110.188.170:5000/komentar/${id_komentar}`,
+        );
         toast.success('Komentar berhasil dihapus');
         fetchKomentar();
       } catch (err) {

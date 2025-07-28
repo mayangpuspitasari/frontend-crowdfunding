@@ -8,9 +8,10 @@ const DashboardPage = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/program/ringkasan')
-      .then(res => setData(res.data))
-      .catch(err => console.error('Gagal mengambil ringkasan:', err));
+    axios
+      .get('http://109.110.188.170:5000/program/ringkasan')
+      .then((res) => setData(res.data))
+      .catch((err) => console.error('Gagal mengambil ringkasan:', err));
   }, []);
 
   return (
@@ -22,9 +23,21 @@ const DashboardPage = () => {
           <h1 className="text-2xl font-bold text-gray-700 mb-6">Dashboard</h1>
           {data ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <RingkasanCard title="Total Program" value={data.totalProgram} color="bg-blue-500" />
-              <RingkasanCard title="Total Donasi" value={`Rp ${Number(data.totalDonasi).toLocaleString('id-ID')}`} color="bg-green-500" />
-              <RingkasanCard title="Total Donatur" value={data.totalDonatur} color="bg-orange-500" />
+              <RingkasanCard
+                title="Total Program"
+                value={data.totalProgram}
+                color="bg-blue-500"
+              />
+              <RingkasanCard
+                title="Total Donasi"
+                value={`Rp ${Number(data.totalDonasi).toLocaleString('id-ID')}`}
+                color="bg-green-500"
+              />
+              <RingkasanCard
+                title="Total Donatur"
+                value={data.totalDonatur}
+                color="bg-orange-500"
+              />
             </div>
           ) : (
             <p>Loading...</p>
@@ -36,3 +49,4 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
+

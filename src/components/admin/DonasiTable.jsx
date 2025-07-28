@@ -17,7 +17,7 @@ const DonasiTable = ({ data, onVerifikasi }) => {
 
   const handleLihatBukti = (url) => {
     if (url) {
-      setSelectedBukti(`http://localhost:5000${url}`);
+      setSelectedBukti(`http://109.110.188.170:5000${url}`);
     } else {
       alert('Bukti belum tersedia.');
     }

@@ -34,7 +34,7 @@ const ModalProgram = ({
   useEffect(() => {
     const fetchKategori = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/kategori');
+        const res = await axios.get('http://109.110.188.170:5000/kategori');
 
         // Pastikan ambil array, sesuaikan dengan struktur respons backend kamu
         const dataKategori = Array.isArray(res.data)
@@ -69,7 +69,7 @@ const ModalProgram = ({
       });
       setPreview(
         initialData.gambar
-          ? `http://localhost:5000${initialData.gambar}`
+          ? `http://109.110.188.170:5000${initialData.gambar}`
           : null,
       );
       setGambar(null);

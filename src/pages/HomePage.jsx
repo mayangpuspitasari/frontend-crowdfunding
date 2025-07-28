@@ -4,7 +4,6 @@ import Hero from '../components/Hero';
 import InformasiDonasi from '../components/InformasiDonasi';
 import DonasiTerbaru from '../components/DonasiTerbaru';
 
-
 const HomePage = () => {
   const [dataRingkasan, setDataRingkasan] = useState({
     totalProgram: 0,
@@ -15,7 +14,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/program/ringkasan')
+    fetch('http://109.110.188.170:5000/program/ringkasan')
       .then((res) => res.json())
       .then((data) => {
         setDataRingkasan(data);

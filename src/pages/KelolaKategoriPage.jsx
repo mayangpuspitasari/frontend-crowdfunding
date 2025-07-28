@@ -21,7 +21,7 @@ const KelolaKategoriPage = () => {
   const fetchKategori = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/kategori?page=${page}&search=${search}`,
+        `http://109.110.188.170:5000/kategori?page=${page}&search=${search}`,
       );
       setKategori(res.data.data);
       setTotalPages(res.data.totalPages);
@@ -42,46 +42,48 @@ const KelolaKategoriPage = () => {
   const handleEditKategori = (kategori) => {
     setSelectedKategori(kategori); // Mode edit
     setShowModal(true);
-    
   };
 
+  const handleHapusKategori = async (id_kategori) => {
+    const result = await Swal.fire({
+      title: 'Yakin ingin menghapus?',
+      text: 'Data kategori akan dihapus permanen!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#aaa',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal',
+    });
 
-const handleHapusKategori = async (id_kategori) => {
-  const result = await Swal.fire({
-    title: 'Yakin ingin menghapus?',
-    text: 'Data kategori akan dihapus permanen!',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#d33',
-    cancelButtonColor: '#aaa',
-    confirmButtonText: 'Ya, hapus!',
-    cancelButtonText: 'Batal',
-  });
+    if (result.isConfirmed) {
+      try {
+        await axios.delete(
+          `http://109.110.188.170:5000/kategori/${id_kategori}`,
+        );
+        await fetchKategori(); // Refresh
 
-  if (result.isConfirmed) {
-    try {
-      await axios.delete(`http://localhost:5000/kategori/${id_kategori}`);
-      await fetchKategori(); // Refresh
-
-      toast.success('Kategori berhasil dihapus');
-    } catch (error) {
-      console.error('Gagal menghapus kategori:', error);
-      toast.error('Gagal menghapus kategori');
+        toast.success('Kategori berhasil dihapus');
+      } catch (error) {
+        console.error('Gagal menghapus kategori:', error);
+        toast.error('Gagal menghapus kategori');
+      }
     }
-  }
-};
-
+  };
 
   const handleSimpanKategori = async (jenisKategori) => {
     try {
       if (selectedKategori) {
         // Mode Edit
-        await axios.put(`http://localhost:5000/kategori/${selectedKategori.id_kategori}`, {
-          jenis_kategori: jenisKategori,
-        });
+        await axios.put(
+          `http://109.110.188.170:5000/kategori/${selectedKategori.id_kategori}`,
+          {
+            jenis_kategori: jenisKategori,
+          },
+        );
       } else {
         // Mode Tambah
-        await axios.post(`http://localhost:5000/kategori`, {
+        await axios.post(`http://109.110.188.170:5000/kategori`, {
           jenis_kategori: jenisKategori,
         });
       }
@@ -101,13 +103,11 @@ const handleHapusKategori = async (id_kategori) => {
         <main className="p-6 flex-1">
           <div className="border rounded-lg p-6 bg-white shadow-md">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="font-bold text-xl text-gray-800">
-                Data Kategori
-              </h3>
+              <h3 className="font-bold text-xl text-gray-800">Data Kategori</h3>
             </div>
 
-          <div className="flex items-center justify-between mb-6">
-            <button
+            <div className="flex items-center justify-between mb-6">
+              <button
                 onClick={handleTambahKategori}
                 className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-sm shadow"
               >
@@ -115,25 +115,27 @@ const handleHapusKategori = async (id_kategori) => {
               </button>
 
               <SearchBarAdmin
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Cari Kategori"
-            />
-          </div>
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Cari Kategori"
+              />
+            </div>
 
             <ModalKategori
-  isOpen={showModal}
-  onClose={() => setShowModal(false)}
-  onSave={handleSimpanKategori}
-  initialValue={selectedKategori ? selectedKategori.jenis_kategori : ''}
-  mode={selectedKategori ? 'edit' : 'tambah'}
-/>
+              isOpen={showModal}
+              onClose={() => setShowModal(false)}
+              onSave={handleSimpanKategori}
+              initialValue={
+                selectedKategori ? selectedKategori.jenis_kategori : ''
+              }
+              mode={selectedKategori ? 'edit' : 'tambah'}
+            />
 
-
-            
-
-            <KategoriTable data={kategori} onEdit={handleEditKategori} onDelete={handleHapusKategori} />
-
+            <KategoriTable
+              data={kategori}
+              onEdit={handleEditKategori}
+              onDelete={handleHapusKategori}
+            />
 
             <Pagination
               page={page}
@@ -148,3 +150,4 @@ const handleHapusKategori = async (id_kategori) => {
 };
 
 export default KelolaKategoriPage;
+

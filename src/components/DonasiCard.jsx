@@ -13,13 +13,15 @@ const DonasiCard = ({
   return (
     <div className=" bg-white shadow-md rounded-2xl overflow-hidden w-full sm:w-[360px] transition hover:scale-[1.02] duration-300">
       <img
-        src={`http://localhost:5000${gambar}`}
+        src={`http://109.110.188.170:5000${gambar}`}
         alt={judul}
         className="w-full h-48 object-cover"
       />
       <div className="p-4 space-y-2">
         <Link to={`/program/${id_program}`}>
-        <h3 className="font-semibold text-lg  hover:text-orange-500 transition duration-200">{judul}</h3>
+          <h3 className="font-semibold text-lg  hover:text-orange-500 transition duration-200">
+            {judul}
+          </h3>
         </Link>
         <p className="text-gray-600 text-sm">Donasi Terkumpul</p>
         <p className="font-bold text-orange-500 text-lg">

@@ -42,7 +42,7 @@ const ProgramCard = ({ program, onEdit, onDelete }) => {
         {/* Gambar */}
         <div className="w-full md:w-40 h-28 overflow-hidden rounded-md bg-gray-100 flex-shrink-0">
           <img
-            src={`http://localhost:5000${program.gambar}`}
+            src={`http://109.110.188.170:5000${program.gambar}`}
             alt={program.judul_program}
             className="w-full h-full object-cover"
           />

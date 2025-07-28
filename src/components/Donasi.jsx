@@ -18,7 +18,9 @@ const Donasi = ({ program }) => {
   useEffect(() => {
     const fetchRekening = async () => {
       try {
-        const res = await fetch('http://localhost:5000/instansi/rekening');
+        const res = await fetch(
+          'http://109.110.188.170:5000/instansi/rekening',
+        );
         const data = await res.json();
         setRekening(data.rekening);
       } catch (err) {
@@ -33,7 +35,7 @@ const Donasi = ({ program }) => {
     const fetchNamaUser = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/user/profile/${id_user}`,
+          `http://109.110.188.170:5000/user/profile/${id_user}`,
         );
         setForm((prev) => ({ ...prev, nama: res.data.nama }));
       } catch (err) {
@@ -60,7 +62,7 @@ const Donasi = ({ program }) => {
     formData.append('bukti_pembayaran', form.bukti);
 
     try {
-      await axios.post('http://localhost:5000/donasi', formData);
+      await axios.post('http://109.110.188.170:5000/donasi', formData);
       toast.success('Donasi berhasil dikirim!');
 
       setForm({

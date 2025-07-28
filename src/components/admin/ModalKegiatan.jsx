@@ -24,7 +24,7 @@ const ModalKegiatan = ({
     const fetchProgram = async () => {
       try {
         const res = await axios.get(
-          'http://localhost:5000/program/all?limit=1000',
+          'http://109.110.188.170:5000/program/all?limit=1000',
         );
         console.log('Data Program:', res.data);
 
@@ -55,7 +55,7 @@ const ModalKegiatan = ({
       });
 
       if (initialData.gambar) {
-        setPreview(`http://localhost:5000${initialData.gambar}`);
+        setPreview(`http://109.110.188.170:5000${initialData.gambar}`);
       }
     } else if (mode === 'tambah' && isOpen) {
       setFormKegiatan({

@@ -41,15 +41,15 @@ const ModalInstansi = ({
       // Selalu reset preview saat modal dibuka kembali
       if (initialData.logo) {
         const url = initialData.logo.startsWith('/instansi/')
-          ? `http://localhost:5000${initialData.logo}`
-          : `http://localhost:5000/instansi/${initialData.logo}`;
+          ? `http://109.110.188.170:5000${initialData.logo}`
+          : `http://109.110.188.170:5000/instansi/${initialData.logo}`;
         setPreviewLogo(url);
       }
 
       if (initialData.struktur) {
         const url = initialData.struktur.startsWith('/instansi/')
-          ? `http://localhost:5000${initialData.struktur}`
-          : `http://localhost:5000/instansi/${initialData.struktur}`;
+          ? `http://109.110.188.170:5000${initialData.struktur}`
+          : `http://109.110.188.170:5000/instansi/${initialData.struktur}`;
         setPreviewStruktur(url);
       }
     }

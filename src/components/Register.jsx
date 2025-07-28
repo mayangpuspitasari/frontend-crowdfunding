@@ -20,7 +20,10 @@ const Register = () => {
     setMessage('');
 
     try {
-      const res = await axios.post('http://localhost:5000/user/register', form);
+      const res = await axios.post(
+        'http://109.110.188.170:5000/user/register',
+        form,
+      );
       setMessage(res.data || 'Registrasi berhasil');
       setForm({ nama: '', email: '', password: '', no_hp: '' });
     } catch (err) {

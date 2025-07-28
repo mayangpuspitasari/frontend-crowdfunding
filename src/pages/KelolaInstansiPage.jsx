@@ -14,7 +14,7 @@ const KelolaInstansiPage = () => {
 
   const fetchInstansi = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/instansi`);
+      const res = await axios.get(`http://109.110.188.170:5000/instansi`);
       console.log('DATA INSTANSI ADMIN:', res.data);
       setInstansi(res.data); // res.data langsung berupa array
     } catch (err) {
@@ -35,7 +35,7 @@ const KelolaInstansiPage = () => {
   const handleSimpanInstansi = async (formData) => {
     try {
       await axios.put(
-        `http://localhost:5000/instansi/${selectedInstansi.id_instansi}`,
+        `http://109.110.188.170:5000/instansi/${selectedInstansi.id_instansi}`,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } },
       );

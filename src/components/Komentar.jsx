@@ -10,7 +10,7 @@ const Komentar = ({ id_program }) => {
   const fetchKomentar = async () => {
     try {
       const res = await fetch(
-        `http://localhost:5000/komentar/program/${id_program}`,
+        `http://109.110.188.170:5000/komentar/program/${id_program}`,
       );
       const data = await res.json();
       setDaftarKomentar(data);
@@ -34,7 +34,7 @@ const Komentar = ({ id_program }) => {
 
     setIsSubmitting(true);
     try {
-      const res = await fetch(`http://localhost:5000/komentar`, {
+      const res = await fetch(`http://109.110.188.170:5000/komentar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id_user, id_program, komentar }),

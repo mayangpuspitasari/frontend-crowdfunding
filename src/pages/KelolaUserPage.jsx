@@ -21,7 +21,7 @@ const KelolaUserPage = () => {
   const fetchUsers = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/user?page=${page}&search=${search}`,
+        `http://109.110.188.170:5000/user?page=${page}&search=${search}`,
       );
       setUsers(res.data.data);
       setTotalPages(res.data.totalPages);
@@ -51,7 +51,7 @@ const KelolaUserPage = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:5000/user/${id_user}`);
+        await axios.delete(`http://109.110.188.170:5000/user/${id_user}`);
         toast.success('User berhasil dihapus');
         fetchUsers();
       } catch (err) {
@@ -65,7 +65,7 @@ const KelolaUserPage = () => {
     try {
       if (selectedUser) {
         await axios.put(
-          `http://localhost:5000/user/${selectedUser.id_user}`,
+          `http://109.110.188.170:5000/user/${selectedUser.id_user}`,
           formUser,
         );
         toast.success('User berhasil diupdate');

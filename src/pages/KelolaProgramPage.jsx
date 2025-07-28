@@ -20,7 +20,7 @@ const KelolaProgramPage = () => {
   const fetchPrograms = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/program?page=${page}&search=${search}`
+        `http://109.110.188.170:5000/program?page=${page}&search=${search}`,
       );
       setPrograms(res.data.data);
       setTotalPages(res.data.totalPages);
@@ -45,7 +45,7 @@ const KelolaProgramPage = () => {
 
   const handleHapusProgram = async (id_program) => {
     try {
-      await axios.delete(`http://localhost:5000/program/${id_program}`);
+      await axios.delete(`http://109.110.188.170:5000/program/${id_program}`);
       toast.success('Program berhasil dihapus');
       fetchPrograms();
     } catch (err) {
@@ -59,14 +59,14 @@ const KelolaProgramPage = () => {
       if (selectedProgram) {
         // Edit
         await axios.put(
-          `http://localhost:5000/program/${selectedProgram.id_program}`,
+          `http://109.110.188.170:5000/program/${selectedProgram.id_program}`,
           formData,
-          { headers: { 'Content-Type': 'multipart/form-data' } }
+          { headers: { 'Content-Type': 'multipart/form-data' } },
         );
         toast.success('Program berhasil diupdate');
       } else {
         // Tambah
-        await axios.post('http://localhost:5000/program', formData, {
+        await axios.post('http://109.110.188.170:5000/program', formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
         toast.success('Program berhasil ditambahkan');
@@ -135,3 +135,4 @@ const KelolaProgramPage = () => {
 };
 
 export default KelolaProgramPage;
+
