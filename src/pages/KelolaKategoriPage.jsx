@@ -21,7 +21,7 @@ const KelolaKategoriPage = () => {
   const fetchKategori = async () => {
     try {
       const res = await axios.get(
-        `http://109.110.188.170:5000/kategori?page=${page}&search=${search}`,
+        `https://109.110.188.170:5000/kategori?page=${page}&search=${search}`,
       );
       setKategori(res.data.data);
       setTotalPages(res.data.totalPages);
@@ -59,7 +59,7 @@ const KelolaKategoriPage = () => {
     if (result.isConfirmed) {
       try {
         await axios.delete(
-          `http://109.110.188.170:5000/kategori/${id_kategori}`,
+          `https://109.110.188.170:5000/kategori/${id_kategori}`,
         );
         await fetchKategori(); // Refresh
 
@@ -76,14 +76,14 @@ const KelolaKategoriPage = () => {
       if (selectedKategori) {
         // Mode Edit
         await axios.put(
-          `http://109.110.188.170:5000/kategori/${selectedKategori.id_kategori}`,
+          `https://109.110.188.170:5000/kategori/${selectedKategori.id_kategori}`,
           {
             jenis_kategori: jenisKategori,
           },
         );
       } else {
         // Mode Tambah
-        await axios.post(`http://109.110.188.170:5000/kategori`, {
+        await axios.post(`https://109.110.188.170:5000/kategori`, {
           jenis_kategori: jenisKategori,
         });
       }

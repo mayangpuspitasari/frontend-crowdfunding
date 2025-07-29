@@ -27,7 +27,7 @@ const ModalUser = ({
       });
 
       if (initialData.foto) {
-        setPreview(`http://109.110.188.170:5000${initialData.foto}`);
+        setPreview(`https://109.110.188.170:5000${initialData.foto}`);
       }
     }
   }, [initialData]);

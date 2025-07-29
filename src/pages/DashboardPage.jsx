@@ -9,7 +9,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     axios
-      .get('http://109.110.188.170:5000/program/ringkasan')
+      .get('https://109.110.188.170:5000/program/ringkasan')
       .then((res) => setData(res.data))
       .catch((err) => console.error('Gagal mengambil ringkasan:', err));
   }, []);

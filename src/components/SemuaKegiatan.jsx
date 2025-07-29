@@ -14,7 +14,7 @@ const SemuaKegiatan = () => {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        `http://109.110.188.170:5000/kegiatan?page=${page}&limit=6&search=${encodeURIComponent(
+        `https://109.110.188.170:5000/kegiatan?page=${page}&limit=6&search=${encodeURIComponent(
           keyword,
         )}`,
       );

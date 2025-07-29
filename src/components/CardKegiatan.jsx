@@ -16,7 +16,7 @@ const CardKegiatan = ({
     <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row hover:shadow-lg transition-shadow duration-300">
       <div className="w-full md:w-48 h-40 bg-gray-200 overflow-hidden flex-shrink-0">
         <img
-          src={`http://109.110.188.170:5000${gambar}`}
+          src={`https://109.110.188.170:5000${gambar}`}
           alt={judul}
           className="w-full h-full object-cover"
         />

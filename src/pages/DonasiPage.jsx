@@ -10,7 +10,7 @@ const DonasiPage = () => {
   useEffect(() => {
     const fetchProgram = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/program/${id}`);
+        const response = await fetch(`https://109.110.188.170:5000/program/${id}`);
         const data = await response.json();
         setProgram(data);
         setLoading(false);

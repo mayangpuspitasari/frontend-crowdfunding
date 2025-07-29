@@ -38,7 +38,7 @@ const KelolaLaporanPage = () => {
         .join('&');
 
       const res = await axios.get(
-        `http://109.110.188.170:5000/laporan/laporan_program?${query}`,
+        `https://109.110.188.170:5000/laporan/laporan_program?${query}`,
       );
       setLaporan(res.data.data);
       setTotalPages(res.data.totalPages);
@@ -63,7 +63,7 @@ const KelolaLaporanPage = () => {
         .join('&');
 
       const res = await axios.get(
-        `http://109.110.188.170:5000/laporan/laporan_program_all?${query}`,
+        `https://109.110.188.170:5000/laporan/laporan_program_all?${query}`,
       );
       setFullLaporan(res.data.data);
     } catch (err) {
@@ -84,7 +84,7 @@ const KelolaLaporanPage = () => {
   const handleDetail = async (laporan) => {
     try {
       const res = await axios.get(
-        `http://109.110.188.170:5000/laporan/laporan_program/${laporan.id_program}`,
+        `https://109.110.188.170:5000/laporan/laporan_program/${laporan.id_program}`,
       );
       setDetailData(res.data.detail);
       setDetailTotal(res.data.total_donasi);

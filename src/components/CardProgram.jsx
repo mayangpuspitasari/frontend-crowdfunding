@@ -17,7 +17,7 @@ const CardProgram = ({
       {/* Gambar kiri */}
       <div className="w-32 md:w-48 h-32 md:h-40 bg-gray-200 overflow-hidden flex-shrink-0">
         <img
-          src={`http://109.110.188.170:5000${gambar}`}
+          src={`https://109.110.188.170:5000${gambar}`}
           alt={judul}
           className="w-full h-full object-cover"
         />

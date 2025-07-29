@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://109.110.188.170:5000/user/login', {
+      const res = await axios.post('https://109.110.188.170:5000/user/login', {
         email,
         password,
         role,

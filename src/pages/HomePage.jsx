@@ -14,7 +14,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://109.110.188.170:5000/program/ringkasan')
+    fetch('https://109.110.188.170:5000/program/ringkasan')
       .then((res) => res.json())
       .then((data) => {
         setDataRingkasan(data);

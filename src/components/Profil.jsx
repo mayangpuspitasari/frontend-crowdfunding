@@ -10,7 +10,7 @@ const Profil = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'http://109.110.188.170:5000/instansi/profil',
+          'https://109.110.188.170:5000/instansi/profil',
         );
         setProfil(response.data);
       } catch (error) {

@@ -20,7 +20,7 @@ const Footer = () => {
   useEffect(() => {
     const getFooterData = async () => {
       try {
-        const res = await fetch('http://109.110.188.170:5000/instansi/footer');
+        const res = await fetch('https://109.110.188.170:5000/instansi/footer');
         const data = await res.json();
         setFooterData(data);
       } catch (err) {

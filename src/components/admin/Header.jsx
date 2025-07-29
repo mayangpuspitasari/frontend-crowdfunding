@@ -12,13 +12,13 @@ const Header = () => {
         const token = sessionStorage.getItem('token');
         if (!token) return;
 
-        const res = await fetch('http://109.110.188.170:5000/user/profile', {
+        const res = await fetch('https://109.110.188.170:5000/user/profile', {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
 
         if (data.foto) {
-          setFotoProfil(`http://109.110.188.170:5000${data.foto}`);
+          setFotoProfil(`https://109.110.188.170:5000${data.foto}`);
         }
       } catch (err) {
         console.error('Gagal memuat foto profil:', err);

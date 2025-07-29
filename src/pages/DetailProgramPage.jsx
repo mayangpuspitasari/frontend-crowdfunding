@@ -12,7 +12,7 @@ const DetailProgramPage = () => {
     const fetchProgram = async () => {
       try {
         const response = await axios.get(
-          `http://109.110.188.170:5000/program/${id_program}`,
+          `https://109.110.188.170:5000/program/${id_program}`,
         );
         setProgram(response.data);
       } catch (error) {

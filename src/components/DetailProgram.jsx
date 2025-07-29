@@ -36,7 +36,7 @@ const DetailProgram = ({
       {/* Gambar */}
       <div className="w-full h-72 bg-gray-200 overflow-hidden rounded-lg mb-6">
         <img
-          src={`http://109.110.188.170:5000${gambar}`}
+          src={`https://109.110.188.170:5000${gambar}`}
           alt={judul}
           className="w-full h-full object-cover"
         />

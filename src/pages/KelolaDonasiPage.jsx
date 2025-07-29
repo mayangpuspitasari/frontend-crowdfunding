@@ -19,7 +19,7 @@ const KelolaDonasiPage = () => {
   const fetchDonasi = async () => {
     try {
       const res = await axios.get(
-        `http://109.110.188.170:5000/donasi?page=${page}&search=${search}`,
+        `https://109.110.188.170:5000/donasi?page=${page}&search=${search}`,
       );
       setDonasi(res.data.data);
       setTotalPages(res.data.totalPages);
@@ -46,7 +46,7 @@ const KelolaDonasiPage = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://109.110.188.170:5000/donasi/${id}`);
+          await axios.delete(`https://109.110.188.170:5000/donasi/${id}`);
           Swal.fire('Berhasil!', 'Donasi berhasil dihapus.', 'success');
           fetchDonasi();
         } catch (err) {
@@ -71,7 +71,7 @@ const KelolaDonasiPage = () => {
       try {
         if (result.isConfirmed) {
           await axios.put(
-            `http://109.110.188.170:5000/donasi/verifikasi_berhasil/${id_donasi}`,
+            `https://109.110.188.170:5000/donasi/verifikasi_berhasil/${id_donasi}`,
           );
           Swal.fire(
             'Berhasil!',
@@ -81,7 +81,7 @@ const KelolaDonasiPage = () => {
           fetchDonasi(); // refresh data
         } else if (result.isDenied) {
           await axios.put(
-            `http://109.110.188.170:5000/donasi/verifikasi_gagal/${id_donasi}`,
+            `https://109.110.188.170:5000/donasi/verifikasi_gagal/${id_donasi}`,
           );
           Swal.fire(
             'Ditetapkan Gagal!',

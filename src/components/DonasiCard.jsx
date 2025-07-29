@@ -13,7 +13,7 @@ const DonasiCard = ({
   return (
     <div className=" bg-white shadow-md rounded-2xl overflow-hidden w-full sm:w-[360px] transition hover:scale-[1.02] duration-300">
       <img
-        src={`http://109.110.188.170:5000${gambar}`}
+        src={`https://109.110.188.170:5000${gambar}`}
         alt={judul}
         className="w-full h-48 object-cover"
       />

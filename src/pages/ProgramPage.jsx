@@ -8,7 +8,7 @@ const ProgramPage = () => {
   const [selectedKategori, setSelectedKategori] = useState('Semua');
 
   useEffect(() => {
-    fetch('http://109.110.188.170:5000/kategori')
+    fetch('https://109.110.188.170:5000/kategori')
       .then((res) => res.json())
       .then((data) => {
         setDataKategori([

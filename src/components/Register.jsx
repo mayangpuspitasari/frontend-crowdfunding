@@ -21,7 +21,7 @@ const Register = () => {
 
     try {
       const res = await axios.post(
-        'http://109.110.188.170:5000/user/register',
+        'https://109.110.188.170:5000/user/register',
         form,
       );
       setMessage(res.data || 'Registrasi berhasil');

@@ -11,7 +11,7 @@ const RiwayatDonasi = () => {
         const id_user = sessionStorage.getItem('id_user');
         console.log('ID user:', id_user);
         const res = await axios.get(
-          `http://109.110.188.170:5000/donasi/riwayat/${id_user}`,
+          `https://109.110.188.170:5000/donasi/riwayat/${id_user}`,
         );
         setRiwayat(res.data);
       } catch (err) {

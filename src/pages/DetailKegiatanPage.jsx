@@ -12,7 +12,7 @@ const DetailKegiatanPage = () => {
     const fetchKegiatan = async () => {
       try {
         const response = await axios.get(
-          `http://109.110.188.170:5000/kegiatan/${id_kegiatan}`,
+          `https://109.110.188.170:5000/kegiatan/${id_kegiatan}`,
         );
         setKegiatan(response.data);
       } catch (error) {

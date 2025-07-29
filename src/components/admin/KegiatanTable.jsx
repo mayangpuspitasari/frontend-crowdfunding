@@ -40,7 +40,7 @@ const KegiatanTable = ({ data, onEdit, onDelete }) => {
               <td className="px-4 py-2 text-center">{i + 1}</td>
               <td className="px-4 py-2 text-center">
                 <img
-                  src={`http://localhost:5000${kegiatan.gambar}`}
+                  src={`https://109.110.188.170:5000${kegiatan.gambar}`}
                   alt={kegiatan.judul_kegiatan}
                   className="w-full md:w-40 h-28 object-cover rounded-md mx-auto"
                 />

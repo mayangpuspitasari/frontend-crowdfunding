@@ -21,7 +21,7 @@ const KelolaKegiatanPage = () => {
   const fetchKegiatan = async () => {
     try {
       const res = await axios.get(
-        `http://109.110.188.170:5000/kegiatan?page=${page}&search=${search}`,
+        `https://109.110.188.170:5000/kegiatan?page=${page}&search=${search}`,
       );
       setKegiatan(res.data.data);
       setTotalPages(res.data.totalPages);
@@ -57,7 +57,7 @@ const KelolaKegiatanPage = () => {
     if (confirm.isConfirmed) {
       try {
         await axios.delete(
-          `http://109.110.188.170:5000/kegiatan/${id_kegiatan}`,
+          `https://109.110.188.170:5000/kegiatan/${id_kegiatan}`,
         );
         toast.success('Kegiatan berhasil dihapus');
         fetchKegiatan();
@@ -73,14 +73,14 @@ const KelolaKegiatanPage = () => {
       if (selectedKegiatan) {
         // Edit
         await axios.put(
-          `http://109.110.188.170:5000/kegiatan/${selectedKegiatan.id_kegiatan}`,
+          `https://109.110.188.170:5000/kegiatan/${selectedKegiatan.id_kegiatan}`,
           formData,
           { headers: { 'Content-Type': 'multipart/form-data' } },
         );
         toast.success('Kegiatan berhasil diupdate');
       } else {
         // Tambah
-        await axios.post('http://109.110.188.170:5000/kegiatan', formData, {
+        await axios.post('https://109.110.188.170:5000/kegiatan', formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
         toast.success('Kegiatan berhasil ditambahkan');
