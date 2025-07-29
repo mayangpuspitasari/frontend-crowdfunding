@@ -9,7 +9,7 @@ const DonasiTerbaru = () => {
 
   useEffect(() => {
     axios
-      .get('http://109.110.188.170:5000/program/terbaru')
+      .get('https://109.110.188.170:5000/program/terbaru')
       .then((res) => {
         setDonasi(res.data);
         setIsLoading(false);
