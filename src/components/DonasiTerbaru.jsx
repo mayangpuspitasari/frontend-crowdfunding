@@ -33,7 +33,7 @@ const DonasiTerbaru = () => {
 
       {/* Loading */}
       {isLoading ? (
-        <p className="text-center text-gray-500">Loading...</p>
+        <p className="text-center text-gray-500">Loading....</p>
       ) : (
         <div className="flex flex-wrap gap-12 justify-center">
           {donasi.map((item) => (
