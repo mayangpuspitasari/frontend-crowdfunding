@@ -121,16 +121,25 @@ const Donasi = ({ program }) => {
             Nominal Donasi:
           </label>
           <input
-            type="number"
+            type="text"
             className="w-full border border-gray-300 px-4 py-2 rounded-md"
             value={form.jumlah_donasi}
             placeholder="Contoh: 100000"
-            onChange={(e) =>
-              setForm({ ...form, jumlah_donasi: e.target.value })
-            }
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^\d*$/.test(value)) {
+                setForm({ ...form, jumlah_donasi: value });
+              }
+            }}
           />
+          {/* Tampilkan pesan error jika nominal tidak valid */}
+          {form.jumlah_donasi && parseInt(form.jumlah_donasi, 10) < 10000 && (
+            <p className="text-red-500 text-sm mt-1">
+              Nominal minimal Rp10.000
+            </p>
+          )}
         </div>
-
+        
         <div>
           <label className="block text-gray-700 font-medium mb-1">
             Dukungan dan Doa:
